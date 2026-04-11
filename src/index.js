@@ -18,3 +18,13 @@ class Task{
         this.complete = !this.complete;
     }
 }
+
+class Project{
+    constructor(name, icon, todoList){
+        this.name = name;
+        if(icon){
+            this.icon = icon;
+        }
+        this.todoList = todoList;
+    }
+}
