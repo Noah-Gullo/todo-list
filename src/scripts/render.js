@@ -1,0 +1,1 @@
+/*DOM Manipulation logic will go here to be seperate from application logic. */
