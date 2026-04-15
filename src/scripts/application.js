@@ -1,3 +1,5 @@
+export let tasks = [];
+
 class Task{
     #title;
     #description;
@@ -16,6 +18,10 @@ class Task{
         this.dueDate = dueDate;
         this.priority = priority;
         this.notes = notes;
+    }
+
+    getTitle(){
+        return this.title;
     }
 
     getCompletionStatus(){
@@ -47,3 +53,8 @@ class Project{
         this.todoList = todoList;
     }
 }
+const testTask = new Task("Title", "Description", "5-1-23", "Low", "This is an example task.");
+const testTask2 = new Task("Another Title", "Basic Description", "2-3-24", "High", "This is another example task.");
+
+tasks[0] = testTask;
+tasks[1] = testTask2;
