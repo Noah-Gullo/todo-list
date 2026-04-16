@@ -4,11 +4,14 @@ export function renderTasks() {
     const taskContainer = document.getElementById("taskContainer");
     for(let i = 0; i < tasks.length; i++){
         const taskDiv = document.createElement("div");
-        taskDiv.setAttribute("class", "task");
-        const title = document.createElement("p");
+        taskDiv.setAttribute("class", "task " + tasks[i].getPriority().toLowerCase());
+        const title = document.createElement("h2");
         title.textContent = tasks[i].getTitle();
-        
+        const priority = document.createElement("p");
+        priority.textContent = tasks[i].getPriority();
+
         taskDiv.appendChild(title);
+        taskDiv.appendChild(priority);
         taskContainer.appendChild(taskDiv);
     }
 }

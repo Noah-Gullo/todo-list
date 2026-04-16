@@ -25,6 +25,10 @@ class Task{
         return this.title;
     }
 
+    getPriority(){
+        return this.priority;
+    }
+
     getCompletionStatus(){
         return this.complete;
     }
@@ -62,8 +66,10 @@ const testTask = new Task("Title", "Description", "5-1-23", "Low", "This is an e
 const testTask2 = new Task("Another Title", "Basic Description", "2-3-24", "High", "This is another example task.");
 
 const homeProject = new Project("Home", "ICON HERE", tasks);
+const workProject = new Project("Work", "ICON HERE", tasks);
 
 tasks[0] = testTask;
 tasks[1] = testTask2;
 
 projects[0] = homeProject;
+projects[1] = workProject;
