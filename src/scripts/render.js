@@ -15,7 +15,7 @@ export function renderProjects(){
     for(let i = 0; i < projects.length; i++){
         const name = document.createElement("p");
         name.textContent = projects[i].getName();
-
+        
         projectContainer.appendChild(name);
     }
 }
