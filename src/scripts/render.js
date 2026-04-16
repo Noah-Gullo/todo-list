@@ -1,4 +1,4 @@
-import { tasks } from "./application.js"
+import { projects, tasks } from "./application.js"
 
 export function renderTasks() {
     const taskContainer = document.getElementById("taskContainer");
@@ -7,6 +7,15 @@ export function renderTasks() {
         title.textContent = tasks[i].getTitle();
         
         taskContainer.appendChild(title);
-        console.log(title);
+    }
+}
+
+export function renderProjects(){
+    const projectContainer = document.getElementById("projectContainer");
+    for(let i = 0; i < projects.length; i++){
+        const name = document.createElement("p");
+        name.textContent = projects[i].getName();
+
+        projectContainer.appendChild(name);
     }
 }

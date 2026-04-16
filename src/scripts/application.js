@@ -1,3 +1,4 @@
+export let projects = [];
 export let tasks = [];
 
 class Task{
@@ -52,9 +53,17 @@ class Project{
         }
         this.todoList = todoList;
     }
+
+    getName(){
+        return this.name;
+    }
 }
 const testTask = new Task("Title", "Description", "5-1-23", "Low", "This is an example task.");
 const testTask2 = new Task("Another Title", "Basic Description", "2-3-24", "High", "This is another example task.");
 
+const homeProject = new Project("Home", "ICON HERE", tasks);
+
 tasks[0] = testTask;
 tasks[1] = testTask2;
+
+projects[0] = homeProject;

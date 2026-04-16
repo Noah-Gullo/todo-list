@@ -11,3 +11,8 @@ h1{
     font-weight: 900;
     font-size: 45px;
 }
+
+#content{
+    display: flex;
+    justify-content: center;
+}
