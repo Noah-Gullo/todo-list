@@ -1,4 +1,4 @@
-import folder from "../images/folder.png"
+import folder from "../images/folder1.png"
 export let projects = [];
 export let tasks = [];
 
