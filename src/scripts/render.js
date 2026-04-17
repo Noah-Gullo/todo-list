@@ -25,9 +25,12 @@ export function renderProjects(){
     for(let i = 0; i < projects.length; i++){
         const projectDiv = document.createElement("div");
         projectDiv.setAttribute("class", "project");
+        const icon = document.createElement("img");
+        icon.src = projects[i].getIcon();
         const name = document.createElement("p");
         name.textContent = projects[i].getName();
         
+        projectDiv.appendChild(icon);
         projectDiv.appendChild(name);
         projectContainer.appendChild(projectDiv);
     }

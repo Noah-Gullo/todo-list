@@ -1,3 +1,4 @@
+import folder from "../images/folder.png"
 export let projects = [];
 export let tasks = [];
 
@@ -31,7 +32,7 @@ class Task{
     getBrief(){
         return this.brief;
     }
-    
+
     getCompletionStatus(){
         return this.complete;
     }
@@ -50,19 +51,21 @@ class Project{
     #icon;
     #todolist
     
-    constructor(name, icon, todoList){
+    constructor(name, todoList){
         if(!new.target){
             throw new TypeError("Called Project constructor without new");
         }
         this.name = name;
-        if(icon){
-            this.icon = icon;
-        }
+        this.icon = folder;
         this.todoList = todoList;
     }
 
     getName(){
         return this.name;
+    }
+
+    getIcon(){
+        return this.icon;
     }
 }
 const testTask = new Task("Title", "Description", "5-1-23", "Low", "This is an example task.");

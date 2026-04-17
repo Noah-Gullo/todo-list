@@ -39,6 +39,12 @@ h1{
     color: var(--bold-text);
 }
 
+#projectContainer .project{
+    display: flex;
+    gap: 5px;
+}
+
+
 #taskContainer{
     grid-column: 2 / 3;
     grid-row: 1 / 3;
