@@ -3,22 +3,21 @@ export let tasks = [];
 
 class Task{
     #title;
-    #description;
+    #brief;
     #duedate;
     #priority;
     #expanded = false;
     #complete = false;
-    #notes;
 
-    constructor(title, description, dueDate, priority, notes){
+    constructor(title, brief, dueDate, priority, description){
         if(!new.target){
             throw new TypeError("Called Task constructor without new");
         }
         this.title = title;
-        this.description = description;
+        this.brief = brief;
         this.dueDate = dueDate;
         this.priority = priority;
-        this.notes = notes;
+        this.description = description;
     }
 
     getTitle(){
@@ -29,6 +28,10 @@ class Task{
         return this.priority;
     }
 
+    getBrief(){
+        return this.brief;
+    }
+    
     getCompletionStatus(){
         return this.complete;
     }
