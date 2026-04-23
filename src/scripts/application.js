@@ -71,11 +71,21 @@ class Project{
     }
 }
 
+const state = {
+    currProject: "Home",
+};
+
 function createTask(title, brief, dueDate, priority, description){
     if(title === undefined || brief === undefined || dueDate === undefined || priority === undefined || description === undefined){
             throw new Error("Missing task constructor field");
     }
     const newTask = new Task(title, brief, dueDate, priority, description);
+    for(let i = 0; i < projects.length; i++){
+        if(projects[i] === state.currProject){
+            tasks[i][0] = newTask;
+        }
+    }
+
     return newTask;
 }
 
@@ -84,12 +94,13 @@ function createProject(name, todoList){
         throw new Error("Missing project constructor field");
     }
     const newProject = new Project(name, todoList);
-    return newProject
+
+    projects[projects.length] = newProject;
+    return newProject;
 }
 
-const testTask = createTask("Title", "Description", "5-1-23", "Low", "This is an example task.");
-
 const homeProject = createProject("Home", tasks);
+const testTask = createTask("Title", "Description", "5-1-23", "Low", "This is an example task.");
 
 tasks[0] = testTask;
 projects[0] = homeProject;
