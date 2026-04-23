@@ -1,17 +1,26 @@
-import { projects, tasks } from "./application.js"
+import { state, projects, tasks } from "./application.js"
 
-export function renderTasks() {
+export function renderTasks(projectName) {
     const taskContainer = document.getElementById("taskContainer");
-    for(let i = 0; i < tasks.length; i++){
+    let projIdx = 0;
+
+    for(let i = 0; i < projects.length; j++){
+        if(projects[i].getName() === state.currProject){
+            projIdx = i;
+            break;
+        }
+    }
+
+    for(let i = 0; i < tasks[projIdx].length; i++){
         const taskDiv = document.createElement("div");
         taskDiv.setAttribute("class", "task");
         const title = document.createElement("h2");
-        title.textContent = tasks[i].getTitle();
+        title.textContent = tasks[projIdx][i].getTitle();
         const priority = document.createElement("p");
-        priority.setAttribute("class", tasks[i].getPriority().toLowerCase());
-        priority.textContent = tasks[i].getPriority();
+        priority.setAttribute("class", tasks[projIdx][i].getPriority().toLowerCase());
+        priority.textContent = tasks[projIdx][i].getPriority();
         const brief = document.createElement("p");
-        brief.textContent = tasks[i].getBrief();
+        brief.textContent = tasks[projIdx][i].getBrief();
 
         taskDiv.appendChild(title);
         taskDiv.appendChild(priority);

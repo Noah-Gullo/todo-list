@@ -1,15 +1,8 @@
 import folder from "../images/folder.png"
 export let projects = [];
-export let tasks = [];
+export let tasks = [[]];
 
 class Task{
-    #title;
-    #brief;
-    #duedate;
-    #priority;
-    #expanded = false;
-    #complete = false;
-
     constructor(title, brief, dueDate, priority, description){
         if(!new.target){
             throw new TypeError("Called Task constructor without new");
@@ -20,6 +13,8 @@ class Task{
         this.dueDate = dueDate;
         this.priority = priority;
         this.description = description;
+        this.expanded = false;
+        this.complete = false;
     }
 
     getTitle(){
@@ -48,10 +43,6 @@ class Task{
 }
 
 class Project{
-    #name;
-    #icon;
-    #todolist
-    
     constructor(name, todoList){
         if(!new.target){
             throw new TypeError("Called Project constructor without new");
@@ -71,7 +62,7 @@ class Project{
     }
 }
 
-const state = {
+export const state = {
     currProject: "Home",
 };
 
@@ -81,8 +72,8 @@ function createTask(title, brief, dueDate, priority, description){
     }
     const newTask = new Task(title, brief, dueDate, priority, description);
     for(let i = 0; i < projects.length; i++){
-        if(projects[i] === state.currProject){
-            tasks[i][0] = newTask;
+        if(projects[i].getName() === state.currProject){
+           tasks[i].push(newTask);
         }
     }
 
@@ -95,12 +86,16 @@ function createProject(name, todoList){
     }
     const newProject = new Project(name, todoList);
 
-    projects[projects.length] = newProject;
+    projects.push(newProject);
     return newProject;
 }
 
 const homeProject = createProject("Home", tasks);
 const testTask = createTask("Title", "Description", "5-1-23", "Low", "This is an example task.");
+const workProject = createProject("Work", []);
+const testTask2 = createTask("Another Title", "Another Description", "5-2-23", "High", "This is another example task.");
 
-tasks[0] = testTask;
-projects[0] = homeProject;
+console.log("Tasks: ");
+console.log(tasks);
+console.log("Projects: ");
+console.log(projects);
