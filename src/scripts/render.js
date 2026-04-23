@@ -2,14 +2,23 @@ import { state, projects, tasks } from "./application.js"
 
 export function renderTasks() {
     const taskContainer = document.getElementById("taskContainer");
+    taskContainer.replaceChildren();
     let projIdx = 0;
 
     for(let i = 0; i < projects.length; j++){
         if(projects[i].getName() === state.currProject){
             projIdx = i;
-            console.log(projects[i].getName() + " and " + state.currProject);
             break;
         }
+    }
+
+    // If there are no tasks in the current project
+    if(tasks[projIdx].length == 0){
+        const emptyMsg = document.createElement("h2");
+        emptyMsg.setAttribute("id", "emptyMessage");
+        emptyMsg.textContent = "Create a task!"
+        taskContainer.append(emptyMsg);
+        return;
     }
 
     for(let i = 0; i < tasks[projIdx].length; i++){
@@ -32,6 +41,7 @@ export function renderTasks() {
 
 export function renderProjects(){
     const projectContainer = document.getElementById("projectContainer");
+    projectContainer.replaceChildren();
     for(let i = 0; i < projects.length; i++){
         const projectDiv = document.createElement("div");
         projectDiv.setAttribute("class", "project");
