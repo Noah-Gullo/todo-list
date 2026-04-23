@@ -14,6 +14,7 @@ class Task{
         if(!new.target){
             throw new TypeError("Called Task constructor without new");
         }
+
         this.title = title;
         this.brief = brief;
         this.dueDate = dueDate;
@@ -55,6 +56,7 @@ class Project{
         if(!new.target){
             throw new TypeError("Called Project constructor without new");
         }
+        
         this.name = name;
         this.icon = folder;
         this.todoList = todoList;
@@ -68,14 +70,26 @@ class Project{
         return this.icon;
     }
 }
-const testTask = new Task("Title", "Description", "5-1-23", "Low", "This is an example task.");
-const testTask2 = new Task("Another Title", "Basic Description", "2-3-24", "High", "This is another example task.");
 
-const homeProject = new Project("Home", "ICON HERE", tasks);
-const workProject = new Project("Work", "ICON HERE", tasks);
+function createTask(title, brief, dueDate, priority, description){
+    if(title === undefined || brief === undefined || dueDate === undefined || priority === undefined || description === undefined){
+            throw new Error("Missing task constructor field");
+    }
+    const newTask = new Task(title, brief, dueDate, priority, description);
+    return newTask;
+}
+
+function createProject(name, todoList){
+    if(name === undefined || todoList === undefined){
+        throw new Error("Missing project constructor field");
+    }
+    const newProject = new Project(name, todoList);
+    return newProject
+}
+
+const testTask = createTask("Title", "Description", "5-1-23", "Low", "This is an example task.");
+
+const homeProject = createProject("Home", tasks);
 
 tasks[0] = testTask;
-tasks[1] = testTask2;
-
 projects[0] = homeProject;
-projects[1] = workProject;
