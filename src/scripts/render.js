@@ -1,12 +1,13 @@
 import { state, projects, tasks } from "./application.js"
 
-export function renderTasks(projectName) {
+export function renderTasks() {
     const taskContainer = document.getElementById("taskContainer");
     let projIdx = 0;
 
     for(let i = 0; i < projects.length; j++){
         if(projects[i].getName() === state.currProject){
             projIdx = i;
+            console.log(projects[i].getName() + " and " + state.currProject);
             break;
         }
     }
