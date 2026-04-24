@@ -1,6 +1,5 @@
 import folder from "../images/folder.png"
 export let projects = [];
-export let tasks = [[]];
 
 class Task{
     constructor(title, brief, dueDate, priority, description){
@@ -43,6 +42,7 @@ class Task{
 }
 
 class Project{
+    todoList = [];
     constructor(name, todoList){
         if(!new.target){
             throw new TypeError("Called Project constructor without new");
@@ -50,7 +50,7 @@ class Project{
         
         this.name = name;
         this.icon = folder;
-        this.todoList = todoList;
+        this.todoList = [];
     }
 
     getName(){
@@ -60,6 +60,14 @@ class Project{
     getIcon(){
         return this.icon;
     }
+
+    getList(){
+        return this.todoList;
+    }
+
+    addToList(task){
+        this.todoList.push(task);
+    }
 }
 
 export const state = {
@@ -67,35 +75,33 @@ export const state = {
 };
 
 function createTask(title, brief, dueDate, priority, description){
-    if(title === undefined || brief === undefined || dueDate === undefined || priority === undefined || description === undefined){
+    if(title === undefined || brief === undefined || dueDate === undefined || priority === undefined
+       || description === undefined){
             throw new Error("Missing task constructor field");
     }
     const newTask = new Task(title, brief, dueDate, priority, description);
     for(let i = 0; i < projects.length; i++){
         if(projects[i].getName() === state.currProject){
-           tasks[i].push(newTask);
+           projects[i].addToList(newTask);
         }
     }
 
     return newTask;
 }
 
-function createProject(name, todoList){
-    if(name === undefined || todoList === undefined){
+function createProject(name){
+    if(name === undefined){
         throw new Error("Missing project constructor field");
     }
-    const newProject = new Project(name, todoList);
+    const newProject = new Project(name);
 
     projects.push(newProject);
     return newProject;
 }
 
-const homeProject = createProject("Home", tasks);
+const homeProject = createProject("Home");
+const workProject = createProject("Work");
 const testTask = createTask("Title", "Description", "5-1-23", "Low", "This is an example task.");
-const workProject = createProject("Work", []);
-const testTask2 = createTask("Another Title", "Another Description", "5-2-23", "High", "This is another example task.");
-
-console.log("Tasks: ");
-console.log(tasks);
-console.log("Projects: ");
-console.log(projects);
+state.currProject = "Work";
+const testTask2 = createTask("Work Task", "Another Description", "5-2-23", "High", "This is another example task.");
+state.currProject = "Home";

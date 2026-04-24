@@ -59,12 +59,20 @@ h1:hover{
     text-decoration: underline rgb(52, 52, 52);
 }
 
-#projectContainer .project >p:hover{
-    transform: rotate(2deg);
+#projectContainer .project > button{
+    border: none;
+    color: var(--bold-text);
+    font-size: 2rem;
+    font-weight: bold
 }
 
-#projectContainer .project >p:active{
-    transform: rotate(5deg);
+#projectContainer .project >button:hover{
+    transform: rotate(2deg);
+    color: #a9a8a8;
+}
+
+#projectContainer .project >button:active{
+    color: #5f5f5f;
 }
 
 .project img{

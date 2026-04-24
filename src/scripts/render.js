@@ -1,19 +1,22 @@
-import { state, projects, tasks } from "./application.js"
+import { state, projects} from "./application.js"
 
 export function renderTasks() {
     const taskContainer = document.getElementById("taskContainer");
     taskContainer.replaceChildren();
     let projIdx = 0;
 
-    for(let i = 0; i < projects.length; j++){
+    // Loop through projects to find index of current project
+    for(let i = 0; i < projects.length; i++){
         if(projects[i].getName() === state.currProject){
             projIdx = i;
             break;
         }
     }
 
+    const tasks = projects[projIdx].getList();
+
     // If there are no tasks in the current project
-    if(tasks[projIdx].length == 0){
+    if(tasks.length == 0){
         const emptyMsg = document.createElement("h2");
         emptyMsg.setAttribute("id", "emptyMessage");
         emptyMsg.textContent = "Create a task!"
@@ -21,16 +24,17 @@ export function renderTasks() {
         return;
     }
 
-    for(let i = 0; i < tasks[projIdx].length; i++){
+
+    for(let i = 0; i < tasks.length; i++){
         const taskDiv = document.createElement("div");
         taskDiv.setAttribute("class", "task");
         const title = document.createElement("h2");
-        title.textContent = tasks[projIdx][i].getTitle();
+        title.textContent = tasks[i].getTitle();
         const priority = document.createElement("p");
-        priority.setAttribute("class", tasks[projIdx][i].getPriority().toLowerCase());
-        priority.textContent = tasks[projIdx][i].getPriority();
+        priority.setAttribute("class", tasks[i].getPriority().toLowerCase());
+        priority.textContent = tasks[i].getPriority();
         const brief = document.createElement("p");
-        brief.textContent = tasks[projIdx][i].getBrief();
+        brief.textContent = tasks[i].getBrief();
 
         taskDiv.appendChild(title);
         taskDiv.appendChild(priority);
@@ -47,11 +51,19 @@ export function renderProjects(){
         projectDiv.setAttribute("class", "project");
         const icon = document.createElement("img");
         icon.src = projects[i].getIcon();
-        const name = document.createElement("p");
+        const name = document.createElement("button");
         name.textContent = projects[i].getName();
-        
+        name.addEventListener("click", () => switchProjects(projects[i].getName()));
+
         projectDiv.appendChild(icon);
         projectDiv.appendChild(name);
         projectContainer.appendChild(projectDiv);
     }
+}
+
+function switchProjects(projectName){
+    const title = document.getElementById("projectTitle");
+    state.currProject = projectName;
+    title.textContent = projectName;
+    renderTasks();
 }
