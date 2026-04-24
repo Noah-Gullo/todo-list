@@ -1,4 +1,5 @@
 import folder from "../images/folder.png"
+import {formatDistance, subDays} from "date-fns";
 export let projects = [];
 
 class Task{
@@ -101,7 +102,8 @@ function createProject(name){
 
 const homeProject = createProject("Home");
 const workProject = createProject("Work");
-const testTask = createTask("Title", "Description", "5-1-23", "Low", "This is an example task.");
+
+const testTask = createTask("Example Title", "Example description", new Date(2023, 5, 3), "Low", "This is an example task.");
 state.currProject = "Work";
-const testTask2 = createTask("Work Task", "Another Description", "5-2-23", "High", "This is another example task.");
+const testTask2 = createTask("Work Task", "Another Description", new Date(2023, 5, 2), "High", "This is another example task.");
 state.currProject = "Home";

@@ -15,13 +15,14 @@
 h1{
     display: inline-flexbox;
     justify-self: center;
-    font-weight: 900;
+    font-weight: 700;
     font-size: 5rem;
     color: var(--bold-text);
 }
 
 h1:hover{
     font-size: 5.2rem;
+    font-weight: 900;
 }
 
 #content{

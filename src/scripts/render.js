@@ -24,7 +24,7 @@ export function renderTasks() {
         return;
     }
 
-
+    // If there are tasks, render all relevant information.
     for(let i = 0; i < tasks.length; i++){
         const taskDiv = document.createElement("div");
         taskDiv.setAttribute("class", "task");
