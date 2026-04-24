@@ -29,11 +29,13 @@ export function renderTasks() {
         const taskDiv = document.createElement("div");
         taskDiv.setAttribute("class", "task");
         const title = document.createElement("h2");
+        title.setAttribute("class", "taskTitle");
         title.textContent = tasks[i].getTitle();
-        const priority = document.createElement("p");
+        const priority = document.createElement("button");
         priority.setAttribute("class", tasks[i].getPriority().toLowerCase());
         priority.textContent = tasks[i].getPriority();
         const brief = document.createElement("p");
+        brief.setAttribute("class", "brief");
         brief.textContent = tasks[i].getBrief();
 
         taskDiv.appendChild(title);
@@ -43,6 +45,7 @@ export function renderTasks() {
     }
 }
 
+// Display all projects in a top-down list
 export function renderProjects(){
     const projectContainer = document.getElementById("projectContainer");
     projectContainer.replaceChildren();

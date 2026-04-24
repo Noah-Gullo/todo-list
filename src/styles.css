@@ -101,14 +101,48 @@ h1:hover{
     font-size: 2.8em;
 }
 
+.task h2:hover{
+    text-decoration: underline;
+}
+
+.task .brief:hover{
+    font-size: 1.05rem;
+}
+
+.task .high,
+.task .medium,
+.task .low{
+    border: none;
+    font-size: 1.3em;
+}
+
 .task .high{
     color: red;
+}
+
+.task .high:hover{
+    background-color: rgb(255, 129, 129);
 }
 
 .task .medium{
     color: orange;
 }
+x
+.task .medium:hover{
+    background-color: rgb(255, 182, 129); 
+}
 
 .task .low{
     color: yellow;
+}
+
+.task .low:hover{
+    background-color: rgb(253, 255, 129);
+}
+
+.task .high:hover,
+.task .medium:hover,
+.task .low:hover{
+    color: black;
+    border-radius: 5px;
 }

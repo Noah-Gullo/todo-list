@@ -103,7 +103,9 @@ function createProject(name){
 const homeProject = createProject("Home");
 const workProject = createProject("Work");
 
-const testTask = createTask("Example Title", "Example description", new Date(2023, 5, 3), "Low", "This is an example task.");
+const testTask = createTask("Example Title", "Example description", new Date(2096, 5, 3), "Low", "This is an example task.");
+const testTask2 = createTask("Another Title", "Another description", new Date(2096, 6, 27), "Medium", "This is another example task.");
+const testTask3 = createTask("Urgent Task", "Witty description here", new Date(2096, 11, 15), "High ", "This is an urgent task.");
 state.currProject = "Work";
-const testTask2 = createTask("Work Task", "Another Description", new Date(2023, 5, 2), "High", "This is another example task.");
+const testTask4 = createTask("Work Task", "Another Description", new Date(2096, 5, 2), "Low", "This is an example work task.");
 state.currProject = "Home";
