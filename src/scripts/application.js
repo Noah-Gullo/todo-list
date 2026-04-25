@@ -50,7 +50,7 @@ class Task{
         return this.id;
     }
 
-    getCompletionStatus(){
+    isComplete(){
         return this.complete;
     }
 

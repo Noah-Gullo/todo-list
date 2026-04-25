@@ -34,18 +34,17 @@ export function renderAllTasks() {
 // Add all necessary elements, and their events, of a task to the DOM.
 function renderTask(task){
     const taskContainer = document.getElementById("taskContainer");
-    const oldTask = document.querySelector(".task." + task.getId());
+    const oldTask = document.querySelector("#" + task.getId() + ".task");
 
-    const taskDiv = document.createElement("div");
-    taskDiv.setAttribute("class", "task " + task.getId());
-    taskDiv.addEventListener("click", () => {
-        task.toggleExpand();
-        renderTask(task);
-    });
+    const taskDiv = setupTaskDiv(task);
+
+    const taskInfoDiv = document.createElement("div"); 
+    taskInfoDiv.setAttribute("class", "infoDiv");
 
     // Render title, priority, brief regardless if the task is expanded or not
     const priorityDateDiv = document.createElement("div");
     priorityDateDiv.setAttribute("class", "dateFlexContainer");
+
     const title = renderTitle(task);
     const priority = renderPriority(task);
     const date = renderDate(task);
@@ -54,16 +53,21 @@ function renderTask(task){
     priorityDateDiv.appendChild(priority);
     priorityDateDiv.appendChild(date);
 
-    taskDiv.appendChild(title);
-    taskDiv.appendChild(priorityDateDiv);
-    taskDiv.appendChild(brief);
+    taskInfoDiv.appendChild(title);
+    taskInfoDiv.appendChild(priorityDateDiv);
+    taskInfoDiv.appendChild(brief);
+
+    const complete = renderComplete(task);
 
     // If the task is expanded render additional information.
     if(task.isExpanded()){
         const description = renderDescription(task);
 
-        taskDiv.appendChild(description);
+        taskInfoDiv.appendChild(description);
     }
+
+    taskDiv.appendChild(taskInfoDiv);
+    taskDiv.appendChild(complete);
 
     // If the task is in the DOM, remove it from the DOM, update the information, and add it back.
     if(oldTask != null){
@@ -71,6 +75,19 @@ function renderTask(task){
     }else{
         taskContainer.appendChild(taskDiv);
     }
+}
+
+// Returns a taskDiv to contain all elements of the task
+function setupTaskDiv(task){
+    const taskDiv = document.createElement("div");
+    taskDiv.setAttribute("class", "task " + task.isComplete());
+    taskDiv.setAttribute("id", task.getId());
+    taskDiv.addEventListener("click", () => {
+        task.toggleExpand();
+        renderTask(task);
+    });
+    
+    return taskDiv;
 }
 
 // Return the title text element of a task
@@ -121,6 +138,17 @@ function renderDescription(task){
     description.setAttribute("class", "description");
     description.textContent = task.getDescription();
     return description;
+}
+
+// Return checkbox for completion status;
+function renderComplete(task){
+    const complete = document.createElement("input");
+    complete.setAttribute("type", "checkbox");
+    complete.addEventListener("click", () =>{
+        task.toggleExpand();
+        task.toggleComplete();
+    })
+    return complete;
 }
 
 // Display all projects in a top-down list

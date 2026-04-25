@@ -11,6 +11,9 @@
     --bold-text: #ffffff;
     --task-title-text: #e3e3e3;
     --normal-text: #cecece;
+    --high: red;;
+    --medium: orange;
+    --low: yellow;
 }
 
 h1{
@@ -108,7 +111,21 @@ h1:hover{
     padding: 0.5em; 
 }
 
+.task{
+    display: flex;
+    justify-content: space-between;
+}
+
+.task .infoDiv{
+    justify-self: flex-start;
+}
+
+.task input[type="checkbox"]{
+    margin: 2em;
+}
+
 .task h2{
+    display: inline-flex;
     color: var(--task-title-text);
 }
 
@@ -136,7 +153,7 @@ h1:hover{
 
 .task .high,
 .task .dateFlexContainer > .high + .date{
-    color: red;
+    color: var(--high);
 }
 
 .task .high:hover{
@@ -145,7 +162,7 @@ h1:hover{
 
 .task .medium,
 .task .dateFlexContainer > .medium + .date{
-    color: orange;
+    color: var(--medium);
 }
 
 .task .medium:hover{
@@ -154,7 +171,7 @@ h1:hover{
 
 .task .low,
 .task .dateFlexContainer > .low + .date{
-    color: yellow;
+    color: var(--low);
 }
 
 .task .low:hover{
@@ -171,4 +188,17 @@ h1:hover{
 .task .description{
     font-size: 1.25rem;
     color: white;
+}
+
+.task.true h2{
+    text-decoration: solid line-through 0.4rem;
+}
+
+.task.true p,
+.task.true button{
+    text-decoration: solid line-through 0.4rem;
+}
+
+.task.true h2{
+    text-decoration-color: var(--task-title-text);
 }
