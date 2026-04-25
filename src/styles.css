@@ -116,9 +116,15 @@ h1:hover{
     text-decoration: underline;
 }
 
-.task .description{
-    font-size: 1.25rem;
-    color: white;
+.task .dateFlexContainer{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1em;
+}
+
+.task .dateFlexContainer .date{
+    font-size: 1.2rem;
 }
 
 .task .high,
@@ -128,7 +134,8 @@ h1:hover{
     font-size: 1.3em;
 }
 
-.task .high{
+.task .high,
+.task .dateFlexContainer > .high + .date{
     color: red;
 }
 
@@ -136,7 +143,8 @@ h1:hover{
     background-color: rgb(255, 129, 129);
 }
 
-.task .medium{
+.task .medium,
+.task .dateFlexContainer > .medium + .date{
     color: orange;
 }
 
@@ -144,7 +152,8 @@ h1:hover{
     background-color: rgb(255, 182, 129); 
 }
 
-.task .low{
+.task .low,
+.task .dateFlexContainer > .low + .date{
     color: yellow;
 }
 
@@ -157,4 +166,9 @@ h1:hover{
 .task .low:hover{
     color: black;
     border-radius: 5px;
+}
+
+.task .description{
+    font-size: 1.25rem;
+    color: white;
 }

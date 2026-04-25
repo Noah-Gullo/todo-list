@@ -27,7 +27,7 @@ class Task{
     }
     
     getDate(){
-        return this.date;
+        return this.dueDate;
     }
 
     setPriority(newPriority){
@@ -130,3 +130,5 @@ const testTask2 = createTask("Urgent Task", "Witty description here", format(new
 state.currProject = "Work";
 const testTask3 = createTask("Work Task", "Another Description", format(new Date(2096, 5, 15), "MM/dd/yyyy"), "Low", "This is an example work task.");
 state.currProject = "Home";
+
+console.log(projects);

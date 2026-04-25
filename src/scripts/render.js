@@ -44,14 +44,18 @@ function renderTask(task){
     });
 
     // Render title, priority, brief regardless if the task is expanded or not
+    const priorityDateDiv = document.createElement("div");
+    priorityDateDiv.setAttribute("class", "dateFlexContainer");
     const title = renderTitle(task);
     const priority = renderPriority(task);
     const date = renderDate(task);
     const brief = renderBrief(task);
 
+    priorityDateDiv.appendChild(priority);
+    priorityDateDiv.appendChild(date);
+
     taskDiv.appendChild(title);
-    taskDiv.appendChild(priority);
-    taskDiv.appendChild(date);
+    taskDiv.appendChild(priorityDateDiv);
     taskDiv.appendChild(brief);
 
     // If the task is expanded render additional information.
@@ -83,7 +87,8 @@ function renderPriority(task){
     priority.setAttribute("class", task.getPriority().toLowerCase());
     priority.textContent = task.getPriority();
     priority.addEventListener("click", () => {
-        // Toggle expand to retain original expand status
+        /*  Toggle expand to retain original expand status. Clicking on div changes it,
+            but changing priority shouldn't change expand status. */
         task.toggleExpand();
         changePriority(task);
     });
