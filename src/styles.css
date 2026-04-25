@@ -101,6 +101,12 @@ h1:hover{
     font-size: 2.8em;
 }
 
+#taskContainer > div{
+    border: 4px solid var(--normal-text);
+    border-radius: 1rem;
+    padding: 0.5em; 
+}
+
 .task h2:hover{
     text-decoration: underline;
 }
@@ -110,7 +116,7 @@ h1:hover{
 }
 
 .task .description{
-    font-size: 1.5rem;
+    color: white;
 }
 
 .task .high,

@@ -38,14 +38,20 @@ function renderTask(task){
 
     const taskDiv = document.createElement("div");
     taskDiv.setAttribute("class", "task " + task.getId());
+    taskDiv.addEventListener("click", () => {
+        task.toggleExpand();
+        renderTask(task);
+    });
 
     // Render title, priority, brief regardless if the task is expanded or not
     const title = renderTitle(task);
     const priority = renderPriority(task);
+    const date = renderDate(task);
     const brief = renderBrief(task);
 
     taskDiv.appendChild(title);
     taskDiv.appendChild(priority);
+    taskDiv.appendChild(date);
     taskDiv.appendChild(brief);
 
     // If the task is expanded render additional information.
@@ -55,8 +61,6 @@ function renderTask(task){
         taskDiv.appendChild(description);
     }
 
-
-    
     // If the task is in the DOM, remove it from the DOM, update the information, and add it back.
     if(oldTask != null){
         oldTask.replaceWith(taskDiv);
@@ -86,6 +90,14 @@ function renderPriority(task){
         changePriority(task)
     });
     return priority;
+}
+
+// Return the due date text of a task
+function renderDate(task){
+    const date = document.createElement("p");
+    date.setAttribute("class", "date");
+    date.textContent = task.getDate();
+    return date;
 }
 
 // Return the brief description text of a task

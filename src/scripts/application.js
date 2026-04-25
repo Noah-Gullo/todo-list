@@ -1,5 +1,5 @@
 import folder from "../images/folder.png"
-import {formatDistance, subDays} from "date-fns";
+import {format} from "date-fns";
 export let projects = [];
 
 class Task{
@@ -26,6 +26,10 @@ class Task{
         return this.priority;
     }
     
+    getDate(){
+        return this.date;
+    }
+
     setPriority(newPriority){
         this.priority = newPriority;
     }
@@ -121,8 +125,8 @@ function createProject(name){
 const homeProject = createProject("Home");
 const workProject = createProject("Work");
 
-const testTask = createTask("Example Title", "Example description", new Date(2096, 5, 3), "Low", "This is an example task.");
-const testTask2 = createTask("Urgent Task", "Witty description here", new Date(2096, 11, 15), "High", "This is an urgent task.");
+const testTask = createTask("Example Title", "Example description. Click to expand.",  format(new Date(2096, 5, 24), "MM/dd/yyyy"), "Low", "This is an example task.");
+const testTask2 = createTask("Urgent Task", "Witty description here", format(new Date(2096, 5, 9), "MM/dd/yyyy"), "High", "This is an urgent task. Better complete it soon.");
 state.currProject = "Work";
-const testTask3 = createTask("Work Task", "Another Description", new Date(2096, 5, 2), "Low", "This is an example work task.");
+const testTask3 = createTask("Work Task", "Another Description", format(new Date(2096, 5, 15), "MM/dd/yyyy"), "Low", "This is an example work task.");
 state.currProject = "Home";
