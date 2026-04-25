@@ -34,6 +34,7 @@ export function renderTasks() {
         const priority = document.createElement("button");
         priority.setAttribute("class", tasks[i].getPriority().toLowerCase());
         priority.textContent = tasks[i].getPriority();
+        priority.addEventListener("click", () => changePriority(tasks[i]));
         const brief = document.createElement("p");
         brief.setAttribute("class", "brief");
         brief.textContent = tasks[i].getBrief();
@@ -69,5 +70,17 @@ function switchProjects(projectName){
     const title = document.getElementById("projectTitle");
     state.currProject = projectName;
     title.textContent = projectName;
+    renderTasks();
+}
+
+function changePriority(task){
+    if(task.getPriority() == "Low"){
+        task.setPriority("Medium");
+    }else if(task.getPriority() == "Medium"){
+        task.setPriority("High");
+    }else if(task.getPriority() == "High"){
+        task.setPriority("Low");
+    }
+
     renderTasks();
 }

@@ -24,6 +24,10 @@ class Task{
     getPriority(){
         return this.priority;
     }
+    
+    setPriority(newPriority){
+        this.priority = newPriority;
+    }
 
     getBrief(){
         return this.brief;
