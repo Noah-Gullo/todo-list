@@ -38,20 +38,21 @@ function renderTask(task){
 
     const taskDiv = document.createElement("div");
     taskDiv.setAttribute("class", "task " + task.getId());
-    const title = document.createElement("h2");
-    title.setAttribute("class", "taskTitle");
-    title.textContent = task.getTitle();
-    const priority = document.createElement("button");
-    priority.setAttribute("class", task.getPriority().toLowerCase());
-    priority.textContent = task.getPriority();
-    priority.addEventListener("click", () => changePriority(task));
-    const brief = document.createElement("p");
-    brief.setAttribute("class", "brief");
-    brief.textContent = task.getBrief();
+
+    // Render title, priority, brief regardless if the task is expanded or not
+    const title = renderTitle(task);
+    const priority = renderPriority(task);
+    const brief = renderBrief(task);
+
+    // If the task is expanded render additional information.
+    if(task.isExpanded()){
+        
+    }
 
     taskDiv.appendChild(title);
     taskDiv.appendChild(priority);
     taskDiv.appendChild(brief);
+
     
     // If the task is in the DOM, remove it from the DOM, update the information, and add it back.
     if(oldTask != null){
@@ -59,6 +60,38 @@ function renderTask(task){
     }else{
         taskContainer.appendChild(taskDiv);
     }
+}
+
+function renderTitle(task){
+    const title = document.createElement("h2");
+    title.setAttribute("class", "taskTitle");
+    title.textContent = task.getTitle();
+    title.addEventListener("click", () => {
+        task.toggleExpand();
+        renderTask(task);
+    });
+    return title;
+}
+
+function renderPriority(task){
+    const priority = document.createElement("button");
+    priority.setAttribute("class", task.getPriority().toLowerCase());
+    priority.textContent = task.getPriority();
+    priority.addEventListener("click", () => {
+        changePriority(task)
+    });
+    return priority;
+}
+
+function renderBrief(task){
+    const brief = document.createElement("p");
+    brief.setAttribute("class", "brief");
+    brief.textContent = task.getBrief();
+    brief.addEventListener("click", () => {
+        task.toggleExpand();
+        renderTask(task);
+    });
+    return brief;
 }
 
 // Display all projects in a top-down list

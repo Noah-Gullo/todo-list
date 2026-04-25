@@ -34,6 +34,10 @@ class Task{
         return this.brief;
     }
 
+    isExpanded(){
+        return this.expanded;
+    }
+
     getId(){
         return this.id;
     }
