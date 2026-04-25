@@ -64,6 +64,7 @@ export function renderProjects(){
     }
 }
 
+// When a project button is clicked, change the title and render all associated tasks
 function switchProjects(projectName){
     const title = document.getElementById("projectTitle");
     state.currProject = projectName;
