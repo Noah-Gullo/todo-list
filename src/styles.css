@@ -9,6 +9,7 @@
 :root{
     --bg-color: #000080;
     --bold-text: #ffffff;
+    --task-title-text: #e3e3e3;
     --normal-text: #cecece;
 }
 
@@ -107,15 +108,16 @@ h1:hover{
     padding: 0.5em; 
 }
 
+.task h2{
+    color: var(--task-title-text);
+}
+
 .task h2:hover{
     text-decoration: underline;
 }
 
-.task .brief:hover{
-    font-size: 1.05rem;
-}
-
 .task .description{
+    font-size: 1.25rem;
     color: white;
 }
 

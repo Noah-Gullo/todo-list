@@ -74,10 +74,6 @@ function renderTitle(task){
     const title = document.createElement("h2");
     title.setAttribute("class", "taskTitle");
     title.textContent = task.getTitle();
-    title.addEventListener("click", () => {
-        task.toggleExpand();
-        renderTask(task);
-    });
     return title;
 }
 
@@ -87,7 +83,9 @@ function renderPriority(task){
     priority.setAttribute("class", task.getPriority().toLowerCase());
     priority.textContent = task.getPriority();
     priority.addEventListener("click", () => {
-        changePriority(task)
+        // Toggle expand to retain original expand status
+        task.toggleExpand();
+        changePriority(task);
     });
     return priority;
 }
