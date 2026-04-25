@@ -3,7 +3,7 @@ import {formatDistance, subDays} from "date-fns";
 export let projects = [];
 
 class Task{
-    constructor(title, brief, dueDate, priority, description){
+    constructor(title, brief, dueDate, priority, description, randomId){
         if(!new.target){
             throw new TypeError("Called Task constructor without new");
         }
@@ -15,6 +15,7 @@ class Task{
         this.description = description;
         this.expanded = false;
         this.complete = false;
+        this.id = randomId;
     }
 
     getTitle(){
@@ -31,6 +32,10 @@ class Task{
 
     getBrief(){
         return this.brief;
+    }
+
+    getId(){
+        return this.id;
     }
 
     getCompletionStatus(){
@@ -80,11 +85,12 @@ export const state = {
 };
 
 function createTask(title, brief, dueDate, priority, description){
+    const alphabet = "abcdefghijklmnopqrstuvwxyz";
     if(title === undefined || brief === undefined || dueDate === undefined || priority === undefined
        || description === undefined){
             throw new Error("Missing task constructor field");
     }
-    const newTask = new Task(title, brief, dueDate, priority, description);
+    const newTask = new Task(title, brief, dueDate, priority, description, alphabet[Math.floor(Math.random() * alphabet.length)] + crypto.randomUUID());
     for(let i = 0; i < projects.length; i++){
         if(projects[i].getName() === state.currProject){
            projects[i].addToList(newTask);
@@ -108,8 +114,7 @@ const homeProject = createProject("Home");
 const workProject = createProject("Work");
 
 const testTask = createTask("Example Title", "Example description", new Date(2096, 5, 3), "Low", "This is an example task.");
-const testTask2 = createTask("Another Title", "Another description", new Date(2096, 6, 27), "Medium", "This is another example task.");
-const testTask3 = createTask("Urgent Task", "Witty description here", new Date(2096, 11, 15), "High ", "This is an urgent task.");
+const testTask2 = createTask("Urgent Task", "Witty description here", new Date(2096, 11, 15), "High", "This is an urgent task.");
 state.currProject = "Work";
-const testTask4 = createTask("Work Task", "Another Description", new Date(2096, 5, 2), "Low", "This is an example work task.");
+const testTask3 = createTask("Work Task", "Another Description", new Date(2096, 5, 2), "Low", "This is an example work task.");
 state.currProject = "Home";

@@ -1,5 +1,5 @@
 import "./styles.css"
-import { renderTasks, renderProjects } from "./scripts/render.js"
+import { renderAllTasks, renderProjects } from "./scripts/render.js"
 
 renderProjects();
-renderTasks();
+renderAllTasks();

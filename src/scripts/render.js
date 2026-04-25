@@ -1,6 +1,6 @@
 import { state, projects} from "./application.js"
 
-export function renderTasks() {
+export function renderAllTasks() {
     const taskContainer = document.getElementById("taskContainer");
     taskContainer.replaceChildren();
     let projIdx = 0;
@@ -13,6 +13,7 @@ export function renderTasks() {
         }
     }
 
+    // Get the list of tasks in the current project as an array
     const tasks = projects[projIdx].getList();
 
     // If there are no tasks in the current project
@@ -24,24 +25,38 @@ export function renderTasks() {
         return;
     }
 
-    // If there are tasks, render all relevant information.
+    // If there are tasks, render each task.
     for(let i = 0; i < tasks.length; i++){
-        const taskDiv = document.createElement("div");
-        taskDiv.setAttribute("class", "task");
-        const title = document.createElement("h2");
-        title.setAttribute("class", "taskTitle");
-        title.textContent = tasks[i].getTitle();
-        const priority = document.createElement("button");
-        priority.setAttribute("class", tasks[i].getPriority().toLowerCase());
-        priority.textContent = tasks[i].getPriority();
-        priority.addEventListener("click", () => changePriority(tasks[i]));
-        const brief = document.createElement("p");
-        brief.setAttribute("class", "brief");
-        brief.textContent = tasks[i].getBrief();
+        renderTask(tasks[i]);
+    }
+}
 
-        taskDiv.appendChild(title);
-        taskDiv.appendChild(priority);
-        taskDiv.appendChild(brief);
+// Add all necessary elements, and their events, of a task to the DOM.
+function renderTask(task){
+    const taskContainer = document.getElementById("taskContainer");
+    const oldTask = document.querySelector(".task." + task.getId());
+
+    const taskDiv = document.createElement("div");
+    taskDiv.setAttribute("class", "task " + task.getId());
+    const title = document.createElement("h2");
+    title.setAttribute("class", "taskTitle");
+    title.textContent = task.getTitle();
+    const priority = document.createElement("button");
+    priority.setAttribute("class", task.getPriority().toLowerCase());
+    priority.textContent = task.getPriority();
+    priority.addEventListener("click", () => changePriority(task));
+    const brief = document.createElement("p");
+    brief.setAttribute("class", "brief");
+    brief.textContent = task.getBrief();
+
+    taskDiv.appendChild(title);
+    taskDiv.appendChild(priority);
+    taskDiv.appendChild(brief);
+    
+    // If the task is in the DOM, remove it from the DOM, update the information, and add it back.
+    if(oldTask != null){
+        oldTask.replaceWith(taskDiv);
+    }else{
         taskContainer.appendChild(taskDiv);
     }
 }
@@ -70,9 +85,10 @@ function switchProjects(projectName){
     const title = document.getElementById("projectTitle");
     state.currProject = projectName;
     title.textContent = projectName;
-    renderTasks();
+    renderAllTasks();
 }
 
+// Change priority of a given task to loop through low to medium to high
 function changePriority(task){
     if(task.getPriority() == "Low"){
         task.setPriority("Medium");
@@ -82,5 +98,5 @@ function changePriority(task){
         task.setPriority("Low");
     }
 
-    renderTasks();
+    renderTask(task);
 }
