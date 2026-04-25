@@ -109,6 +109,10 @@ h1:hover{
     font-size: 1.05rem;
 }
 
+.task .description{
+    font-size: 1.5rem;
+}
+
 .task .high,
 .task .medium,
 .task .low{

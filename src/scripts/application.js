@@ -34,6 +34,10 @@ class Task{
         return this.brief;
     }
 
+    getDescription(){
+        return this.description;
+    }
+
     isExpanded(){
         return this.expanded;
     }

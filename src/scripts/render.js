@@ -44,14 +44,17 @@ function renderTask(task){
     const priority = renderPriority(task);
     const brief = renderBrief(task);
 
-    // If the task is expanded render additional information.
-    if(task.isExpanded()){
-        
-    }
-
     taskDiv.appendChild(title);
     taskDiv.appendChild(priority);
     taskDiv.appendChild(brief);
+
+    // If the task is expanded render additional information.
+    if(task.isExpanded()){
+        const description = renderDescription(task);
+
+        taskDiv.appendChild(description);
+    }
+
 
     
     // If the task is in the DOM, remove it from the DOM, update the information, and add it back.
@@ -62,6 +65,7 @@ function renderTask(task){
     }
 }
 
+// Return the title text element of a task
 function renderTitle(task){
     const title = document.createElement("h2");
     title.setAttribute("class", "taskTitle");
@@ -73,6 +77,7 @@ function renderTitle(task){
     return title;
 }
 
+// Return the priority button of a task
 function renderPriority(task){
     const priority = document.createElement("button");
     priority.setAttribute("class", task.getPriority().toLowerCase());
@@ -83,6 +88,7 @@ function renderPriority(task){
     return priority;
 }
 
+// Return the brief description text of a task
 function renderBrief(task){
     const brief = document.createElement("p");
     brief.setAttribute("class", "brief");
@@ -92,6 +98,14 @@ function renderBrief(task){
         renderTask(task);
     });
     return brief;
+}
+
+// Return the complete description text of a task
+function renderDescription(task){
+    const description = document.createElement("p");
+    description.setAttribute("class", "description");
+    description.textContent = task.getDescription();
+    return description;
 }
 
 // Display all projects in a top-down list
