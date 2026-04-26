@@ -209,16 +209,32 @@ h1:hover{
     justify-self: flex-start;
 }
 
-.task .complete{
-    margin: 2em;
-    width: 2em;
-    height: 2em;
+.task .taskInput{
+    display: flex;
+}
+
+.task .taskInput .complete{
+    margin: 1em;
+    width: 2.25em;
+    height: 2.25em;
     border: 0.2em solid var(--normal-text);
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     font-size: 1rem;
     font-weight: bolder;
     text-decoration: none;
+}
+
+.task .taskInput .delete{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 1em;
+    width: 2.25em;
+    height: 2.25em;
+    border: none;
+    border-radius: 0.2rem;
+    background-color: red;
+    font-size: 1rem;
+    font-weight: bolder;
 }
 
 .task h2{

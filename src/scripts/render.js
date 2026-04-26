@@ -1,4 +1,4 @@
-import { state, projects, addProject, deleteProject, deleteAllProjects} from "./application.js"
+import { state, projects, addProject, deleteTask, deleteProject, deleteAllProjects} from "./application.js"
 
 export function renderAllTasks() {
     const taskContainer = document.getElementById("taskContainer");
@@ -41,6 +41,9 @@ function renderTask(task){
     const taskInfoDiv = document.createElement("div"); 
     taskInfoDiv.setAttribute("class", "infoDiv");
 
+    const taskInputDiv = document.createElement("div");
+    taskInputDiv.setAttribute("class", "taskInput");
+
     // Render title, priority, brief regardless if the task is expanded or not
     const priorityDateDiv = document.createElement("div");
     priorityDateDiv.setAttribute("class", "dateFlexContainer");
@@ -57,7 +60,11 @@ function renderTask(task){
     taskInfoDiv.appendChild(priorityDateDiv);
     taskInfoDiv.appendChild(brief);
 
+    const deleteButton = renderDeleteTask(task);
     const complete = renderComplete(task);
+
+    taskInputDiv.appendChild(deleteButton);
+    taskInputDiv.appendChild(complete);
 
     // If the task is expanded render additional information.
     if(task.isExpanded()){
@@ -67,7 +74,7 @@ function renderTask(task){
     }
 
     taskDiv.appendChild(taskInfoDiv);
-    taskDiv.appendChild(complete);
+    taskDiv.appendChild(taskInputDiv);
 
     // If the task is in the DOM, remove it from the DOM, update the information, and add it back.
     if(oldTask != null){
@@ -138,6 +145,18 @@ function renderDescription(task){
     description.setAttribute("class", "description");
     description.textContent = task.getDescription();
     return description;
+}
+
+function renderDeleteTask(task){
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "X";
+    deleteButton.setAttribute("class", "delete");
+    deleteButton.addEventListener("click", () => {
+        task.toggleExpand();
+        deleteTask(task);
+        renderAllTasks();
+    });
+    return deleteButton;
 }
 
 // Return checkbox for completion status;

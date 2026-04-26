@@ -150,6 +150,20 @@ export function addProject(projectName){
     }
 }
 
+// Removes a task from a given project
+export function deleteTask(task){
+    for(let i = 0; i < projects.length; i++){
+        for(let j = 0; j < projects[i].todoList.length; j++){
+            if(projects[i].getList()[j].getId() === task.getId()){
+                console.log(projects[i].getList());
+                projects[i].getList().splice(j, 1);
+                console.log(projects[i].getList());
+                break;
+            }
+        }
+    }
+}
+
 // Removes the project. If it is the current project transfers to the project above it.
 export function deleteProject(project){
     for(let i = 0; i < projects.length; i++){
