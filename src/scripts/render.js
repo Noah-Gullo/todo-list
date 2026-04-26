@@ -1,4 +1,4 @@
-import { state, projects, addProject, deleteProject} from "./application.js"
+import { state, projects, addProject, deleteProject, deleteAllProjects} from "./application.js"
 
 export function renderAllTasks() {
     const taskContainer = document.getElementById("taskContainer");
@@ -178,6 +178,8 @@ export function renderProjects(){
             deleteButton.setAttribute("class", "delete");
             deleteButton.addEventListener("click", () =>{
                 deleteProject(project);
+                renderProjects();
+                switchProjects(state.currProject);
             });
             projectDiv.appendChild(deleteButton);
         }
@@ -203,6 +205,7 @@ function addNewProject(){
     }
 }
 
+
 // Change priority of a given task to loop through low to medium to high
 function changePriority(task){
     if(task.getPriority() == "Low"){
@@ -218,3 +221,6 @@ function changePriority(task){
 
 const addProjectButton = document.querySelector("#addProject > button");
 addProjectButton.addEventListener("click", () => addNewProject());
+
+const deleteEveryProjectButton = document.querySelector("#deleteAll"); 
+deleteEveryProjectButton.addEventListener("click", () => deleteAllProjects());

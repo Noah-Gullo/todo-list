@@ -161,16 +161,17 @@ export function deleteProject(project){
             projects.splice(i, 1);
         }
     }
-
-    renderProjects();
-    switchProjects(state.currProject);
 }
 
 // Removes all projects except for the default "Home" project
 export function deleteAllProjects(){
-    for(let i = 1; i < projects.length; i++){
+    for(let i = projects.length - 1; i > 0; i--){
         deleteProject(projects[i]);
     }
+
+    state.currProject = "Home";
+    renderProjects();
+    switchProjects(state.currProject);
 }
 
 const homeProject = createProject("Home");

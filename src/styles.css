@@ -36,7 +36,8 @@ h1:hover{
 }
 
 #userInput > form > input,
-#userInput > form > button{
+#userInput > form > button,
+#userInput > button{
     border: 0.2rem solid white;
     padding: 0.2em;
     font-size: 1rem;
@@ -55,15 +56,38 @@ h1:hover{
     background-color: rgb(21, 255, 0);
 }
 
-#userInput > form > button:hover{
-    background-color: rgb(18, 212, 1);
+#userInput > form button:hover,
+#userInput > button:hover{
     font-size: 1.05rem;
     font-weight: 600;
 }
 
+#userInput > form button:active,
+#userInput > button:active{
+    font-size: 0.95rem;
+}
+
+
+#userInput > form > button:hover{
+    background-color: rgb(18, 212, 1);
+    
+}
+
 #userInput > form > button:active{
     background-color: rgb(15, 177, 0);
-    font-size: 0.95rem;
+}
+
+#userInput > button{
+    background-color: red;
+    font-weight: bolder;
+}
+
+#userInput > button:hover{
+    background-color: rgb(255, 87, 87);
+}
+
+#userInput > button:active{
+    background-color: rgb(117, 0, 0);
 }
 
 #content{
@@ -112,7 +136,8 @@ h1:hover{
     background-color: rgb(255, 87, 87);
 }
 
-#projectContainer .project .delete:active{
+#projectContainer .project .delete:active,
+#userInput > button:active{
     background-color: rgb(117, 0, 0);
 }
 
