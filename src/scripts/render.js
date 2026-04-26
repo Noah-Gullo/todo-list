@@ -1,4 +1,4 @@
-import { state, projects, deleteProject} from "./application.js"
+import { state, projects, addProject, deleteProject} from "./application.js"
 
 export function renderAllTasks() {
     const taskContainer = document.getElementById("taskContainer");
@@ -194,6 +194,15 @@ export function switchProjects(projectName){
     renderAllTasks();
 }
 
+function addNewProject(){
+    const newProjectName = document.querySelector("#newNameField").value;
+    let error = addProject(newProjectName);
+    if(error === false){
+        renderProjects();
+        switchProjects(newProjectName);
+    }
+}
+
 // Change priority of a given task to loop through low to medium to high
 function changePriority(task){
     if(task.getPriority() == "Low"){
@@ -206,3 +215,6 @@ function changePriority(task){
 
     renderTask(task);
 }
+
+const addProjectButton = document.querySelector("#addProject > button");
+addProjectButton.addEventListener("click", () => addNewProject());

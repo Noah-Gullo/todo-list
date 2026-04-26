@@ -10,10 +10,10 @@
         <h1 id="projectTitle">Home</h1>
         
         <div id="userInput">
-            <form id="addProject">
-                    <input type="text" placeholder="Enter project name:"></input>
+            <form id="addProject" onsubmit="return false">
+                <input id="newNameField" type="text" placeholder="Enter project name:" minlength=1 maxlength=18 required aria-required="true"></input>
+                <button id="submit" type="submit">Add Project</button>
             </form>
-            <button>Add Project</button>
         </div>
 
         <div id="content">

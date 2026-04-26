@@ -36,32 +36,32 @@ h1:hover{
 }
 
 #userInput > form > input,
-#userInput > button{
+#userInput > form > button{
     border: 0.2rem solid white;
     padding: 0.2em;
     font-size: 1rem;
 }
 
-#userInput > form > input{
+#userInput > form >input{
     background-color: rgb(18, 0, 71);
     color: white;
 }
 
-#userInput > form > input::placeholder{
+#userInput > form >input::placeholder{
     color: white;
 }
 
-#userInput > button{
+#userInput > form > button{
     background-color: rgb(21, 255, 0);
 }
 
-#userInput > button:hover{
+#userInput > form > button:hover{
     background-color: rgb(18, 212, 1);
     font-size: 1.05rem;
     font-weight: 600;
 }
 
-#userInput > button:active{
+#userInput > form > button:active{
     background-color: rgb(15, 177, 0);
     font-size: 0.95rem;
 }

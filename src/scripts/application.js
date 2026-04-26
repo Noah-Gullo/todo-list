@@ -129,6 +129,28 @@ function createProject(name){
     return newProject;
 }
 
+// Adds project given the new project's name, provided it is not a repeat of another project and meets min/max length.
+export function addProject(projectName){
+    if(projectName.length < 1 || projectName.length > 18 && projectName.charAt(0) != " "){
+        return;
+    }
+
+    let exists = false;
+    for(let i = 0; i < projects.length; i++){
+        if(projects[i].getName() === projectName){
+            exists = true;
+        }
+    }
+
+    if(!exists){
+        createProject(projectName);
+        return false;
+    }else{
+        return true;
+    }
+}
+
+// Removes the project. If it is the current project transfers to the project above it.
 export function deleteProject(project){
     for(let i = 0; i < projects.length; i++){
         if(project.getName() === state.currProject){
@@ -139,15 +161,23 @@ export function deleteProject(project){
             projects.splice(i, 1);
         }
     }
+
     renderProjects();
     switchProjects(state.currProject);
+}
+
+// Removes all projects except for the default "Home" project
+export function deleteAllProjects(){
+    for(let i = 1; i < projects.length; i++){
+        deleteProject(projects[i]);
+    }
 }
 
 const homeProject = createProject("Home");
 const workProject = createProject("Work");
 
-const testTask = createTask("Example Title", "Example description. Click to expand.",  format(new Date(2096, 5, 24), "MM/dd/yyyy"), "Low", "This is an example task.");
-const testTask2 = createTask("Urgent Task", "Witty description here", format(new Date(2096, 5, 9), "MM/dd/yyyy"), "High", "This is an urgent task. Better complete it soon.");
+const testTask = createTask("Example Title", "Example description. Click on a task to expand it.",  format(new Date(2096, 5, 24), "MM/dd/yyyy"), "Low", "This is an example task. Longer descriptions can go here instead of the brief one (in gray) above.");
+const testTask2 = createTask("Urgent Task", "Witty description here. Please be amazed.", format(new Date(2096, 5, 9), "MM/dd/yyyy"), "High", "This is an urgent task. Better complete it soon.");
 state.currProject = "Work";
 const testTask3 = createTask("Work Task", "Another Description", format(new Date(2096, 5, 15), "MM/dd/yyyy"), "Low", "This is an example work task.");
 state.currProject = "Home";
