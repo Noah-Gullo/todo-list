@@ -157,13 +157,18 @@ export function renderProjects(){
     projectContainer.replaceChildren();
     for(let i = 0; i < projects.length; i++){
         const project = projects[i];
-        const projectDiv = document.createElement("div");
+        const projectDiv = document.createElement("div");        
 
-        if(project.getName() == "Home"){
+        if(project.getName() === "Home"){
             projectDiv.setAttribute("id", "Home");
         }
 
         projectDiv.setAttribute("class", "project");
+
+        if(project.getName() === state.currProject){
+            projectDiv.setAttribute("class", "project current");
+        }
+
         const icon = document.createElement("img");
         icon.src = project.getIcon();
         const name = document.createElement("button");
@@ -186,7 +191,7 @@ export function renderProjects(){
             const deleteAllButton = document.createElement("button");
             deleteAllButton.setAttribute("id", "deleteAll");
             deleteAllButton.addEventListener("click", () => deleteAllProjects());
-            deleteAllButton.textContent = "Remove Below";
+            deleteAllButton.textContent = "Remove All";
             projectDiv.appendChild(deleteAllButton);
         }
 
@@ -200,6 +205,7 @@ export function switchProjects(projectName){
     state.currProject = projectName;
     title.textContent = projectName;
     renderAllTasks();
+    renderProjects();
 }
 
 function addNewProject(){
@@ -210,7 +216,6 @@ function addNewProject(){
         switchProjects(newProjectName);
     }
 }
-
 
 // Change priority of a given task to loop through low to medium to high
 function changePriority(task){
