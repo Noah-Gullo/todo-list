@@ -142,8 +142,13 @@ function renderDescription(task){
 
 // Return checkbox for completion status;
 function renderComplete(task){
-    const complete = document.createElement("input");
-    complete.setAttribute("type", "checkbox");
+    const complete = document.createElement("button");
+    complete.setAttribute("class", "complete");
+    if(task.isComplete()){
+        complete.textContent = "X"
+    }else{
+        complete.textContent = " ";
+    }
     complete.addEventListener("click", () =>{
         task.toggleExpand();
         task.toggleComplete();
@@ -172,6 +177,7 @@ export function renderProjects(){
         const icon = document.createElement("img");
         icon.src = project.getIcon();
         const name = document.createElement("button");
+        name.setAttribute("class", "name");
         name.textContent = project.getName();
         name.addEventListener("click", () => switchProjects(project.getName()));
 
