@@ -32,12 +32,12 @@ h1:hover{
 #userInput{
     display: flex;
     margin: 1em;
-    gap: 1em;
+    gap: 0.5em;
 }
 
 #userInput > form > input,
 #userInput > form > button,
-#userInput > button{
+#deleteAll{
     border: 0.2rem solid white;
     padding: 0.2em;
     font-size: 1rem;
@@ -57,13 +57,13 @@ h1:hover{
 }
 
 #userInput > form button:hover,
-#userInput > button:hover{
+#deleteAll:hover{
     font-size: 1.05rem;
     font-weight: 600;
 }
 
 #userInput > form button:active,
-#userInput > button:active{
+#deleteAll:active{
     font-size: 0.95rem;
 }
 
@@ -77,16 +77,16 @@ h1:hover{
     background-color: rgb(15, 177, 0);
 }
 
-#userInput > button{
+#deleteAll{
     background-color: red;
     font-weight: bolder;
 }
 
-#userInput > button:hover{
+#deleteAll:hover{
     background-color: rgb(255, 87, 87);
 }
 
-#userInput > button:active{
+#deleteAll:active{
     background-color: rgb(117, 0, 0);
 }
 
@@ -137,7 +137,7 @@ h1:hover{
 }
 
 #projectContainer .project .delete:active,
-#userInput > button:active{
+#deleteAll:active{
     background-color: rgb(117, 0, 0);
 }
 

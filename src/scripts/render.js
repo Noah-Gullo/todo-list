@@ -182,6 +182,12 @@ export function renderProjects(){
                 switchProjects(state.currProject);
             });
             projectDiv.appendChild(deleteButton);
+        }else{
+            const deleteAllButton = document.createElement("button");
+            deleteAllButton.setAttribute("id", "deleteAll");
+            deleteAllButton.addEventListener("click", () => deleteAllProjects());
+            deleteAllButton.textContent = "Remove Below";
+            projectDiv.appendChild(deleteAllButton);
         }
 
         projectContainer.appendChild(projectDiv);
@@ -222,5 +228,3 @@ function changePriority(task){
 const addProjectButton = document.querySelector("#addProject > button");
 addProjectButton.addEventListener("click", () => addNewProject());
 
-const deleteEveryProjectButton = document.querySelector("#deleteAll"); 
-deleteEveryProjectButton.addEventListener("click", () => deleteAllProjects());
