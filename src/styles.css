@@ -29,6 +29,43 @@ h1:hover{
     font-weight: 900;
 }
 
+#userInput{
+    display: flex;
+    margin: 1em;
+    gap: 1em;
+}
+
+#userInput > form > input,
+#userInput > button{
+    border: 0.2rem solid white;
+    padding: 0.2em;
+    font-size: 1rem;
+}
+
+#userInput > form > input{
+    background-color: rgb(18, 0, 71);
+    color: white;
+}
+
+#userInput > form > input::placeholder{
+    color: white;
+}
+
+#userInput > button{
+    background-color: rgb(21, 255, 0);
+}
+
+#userInput > button:hover{
+    background-color: rgb(18, 212, 1);
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+#userInput > button:active{
+    background-color: rgb(15, 177, 0);
+    font-size: 0.95rem;
+}
+
 #content{
     display: grid;
     grid-template-columns: 1fr 3fr;
@@ -50,33 +87,53 @@ h1:hover{
 
 #projectContainer .project{
     display: flex;
+    align-items: center;
     gap: 0.5em;
     color: white;
 }
 
-#projectContainer .project:hover{
+#projectContainer .project:hover > button:first-of-type{
     color: gray;
     text-decoration: underline gray;
 }
 
-#projectContainer .project:active{
+#projectContainer .project .delete{
+    font-family: Arial, Helvetica, sans-serif;
+    width: 1.74em;
+    height: 1.74em;
+    border: none;
+    border-radius: 0.2rem;
+    background-color: red;
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+#projectContainer .project .delete:hover{
+    background-color: rgb(255, 87, 87);
+}
+
+#projectContainer .project .delete:active{
+    background-color: rgb(117, 0, 0);
+}
+
+#projectContainer .project > button:first-of-type:active{
     color: rgb(52, 52, 52);
     text-decoration: underline rgb(52, 52, 52);
 }
 
-#projectContainer .project > button{
+#projectContainer .project > button:first-of-type{
     border: none;
     color: var(--bold-text);
     font-size: 2rem;
     font-weight: bold
 }
 
-#projectContainer .project >button:hover{
+#projectContainer .project > button:first-of-type:hover{
     transform: rotate(2deg);
     color: #a9a8a8;
 }
 
-#projectContainer .project >button:active{
+#projectContainer .project > button:first-of-type:active{
     color: #5f5f5f;
 }
 

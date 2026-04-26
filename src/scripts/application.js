@@ -1,4 +1,5 @@
 import folder from "../images/folder.png"
+import { renderProjects, switchProjects } from "./render.js"
 import {format} from "date-fns";
 export let projects = [];
 
@@ -65,7 +66,7 @@ class Task{
 
 class Project{
     todoList = [];
-    constructor(name, todoList){
+    constructor(name, randomId){
         if(!new.target){
             throw new TypeError("Called Project constructor without new");
         }
@@ -73,6 +74,7 @@ class Project{
         this.name = name;
         this.icon = folder;
         this.todoList = [];
+        this.id = randomId;
     }
 
     getName(){
@@ -85,6 +87,10 @@ class Project{
 
     getList(){
         return this.todoList;
+    }
+
+    getId(){
+        return this.id;
     }
 
     addToList(task){
@@ -113,13 +119,28 @@ function createTask(title, brief, dueDate, priority, description){
 }
 
 function createProject(name){
+    const alphabet = "abcdefghijklmnopqrstuvwxyz";
     if(name === undefined){
         throw new Error("Missing project constructor field");
     }
-    const newProject = new Project(name);
+    const newProject = new Project(name, alphabet[Math.floor(Math.random() * alphabet.length)] + crypto.randomUUID());
 
     projects.push(newProject);
     return newProject;
+}
+
+export function deleteProject(project){
+    for(let i = 0; i < projects.length; i++){
+        if(project.getName() === state.currProject){
+            state.currProject = projects[projects.indexOf(project) - 1].getName();
+        }
+
+        if(projects[i].getId() === project.getId()){
+            projects.splice(i, 1);
+        }
+    }
+    renderProjects();
+    switchProjects(state.currProject);
 }
 
 const homeProject = createProject("Home");
@@ -130,5 +151,3 @@ const testTask2 = createTask("Urgent Task", "Witty description here", format(new
 state.currProject = "Work";
 const testTask3 = createTask("Work Task", "Another Description", format(new Date(2096, 5, 15), "MM/dd/yyyy"), "Low", "This is an example work task.");
 state.currProject = "Home";
-
-console.log(projects);

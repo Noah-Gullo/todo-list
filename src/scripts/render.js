@@ -1,4 +1,4 @@
-import { state, projects} from "./application.js"
+import { state, projects, deleteProject} from "./application.js"
 
 export function renderAllTasks() {
     const taskContainer = document.getElementById("taskContainer");
@@ -156,22 +156,38 @@ export function renderProjects(){
     const projectContainer = document.getElementById("projectContainer");
     projectContainer.replaceChildren();
     for(let i = 0; i < projects.length; i++){
+        const project = projects[i];
         const projectDiv = document.createElement("div");
+
+        if(project.getName() == "Home"){
+            projectDiv.setAttribute("id", "Home");
+        }
+
         projectDiv.setAttribute("class", "project");
         const icon = document.createElement("img");
-        icon.src = projects[i].getIcon();
+        icon.src = project.getIcon();
         const name = document.createElement("button");
-        name.textContent = projects[i].getName();
-        name.addEventListener("click", () => switchProjects(projects[i].getName()));
+        name.textContent = project.getName();
+        name.addEventListener("click", () => switchProjects(project.getName()));
 
         projectDiv.appendChild(icon);
         projectDiv.appendChild(name);
+        if(project.getName() != "Home"){
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "X";
+            deleteButton.setAttribute("class", "delete");
+            deleteButton.addEventListener("click", () =>{
+                deleteProject(project);
+            });
+            projectDiv.appendChild(deleteButton);
+        }
+
         projectContainer.appendChild(projectDiv);
     }
 }
 
 // When a project button is clicked, change the title and render all associated tasks
-function switchProjects(projectName){
+export function switchProjects(projectName){
     const title = document.getElementById("projectTitle");
     state.currProject = projectName;
     title.textContent = projectName;
