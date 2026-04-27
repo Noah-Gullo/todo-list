@@ -260,5 +260,10 @@ function changePriority(task){
 const addProjectButton = document.querySelector("#addProject > button");
 addProjectButton.addEventListener("click", () => addNewProject());
 
-const addTaskButton = document.querySelector("#addTask > button");
-addTaskButton.addEventListener("click", () => addTask());
+const addTaskButton = document.getElementById("addTaskButton");
+addTaskButton.addEventListener("click", () => {
+    document.querySelector("dialog").showModal();
+});
+
+const submitTaskButton = document.getElementById("submitButton");
+submitTaskButton.addEventListener("click", () => addTask());

@@ -1,5 +1,5 @@
 import folder from "../images/folder.png"
-import { renderProjects, switchProjects } from "./render.js"
+import { renderAllTasks, renderProjects, switchProjects } from "./render.js"
 import {format} from "date-fns";
 export let projects = [];
 
@@ -138,8 +138,13 @@ function createProject(name){
 }
 
 export function addTask(){
-    const popup = document.querySelector("dialog");
-    popup.showModal();
+    const title = document.getElementById("titleField").value;
+    const brief = document.getElementById("briefField").value;
+    const date = document.getElementById("dateField").value;
+    const priority = document.getElementById("priorityDropdown").value;
+    const description = document.getElementById("descriptionField").value;
+    createTask(title, brief, format(date, "MM/dd/yyyy"), priority, description);
+    renderAllTasks();
 }
 
 // Adds project given the new project's name, provided it is not a repeat of another project and meets min/max length.

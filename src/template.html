@@ -11,12 +11,12 @@
         
         <div id="userInput">
             <form id="addProject" onsubmit="return false">
-                <input id="newNameField" type="text" placeholder="Enter project name:" minlength=1 maxlength=10 required aria-required="true"></input>
+                <input id="newNameField" type="text" placeholder="Enter project name:" minlength="1" maxlength="10" required aria-required="true"></input>
                 <button id="submit" type="submit">Add Project</button>
             </form>
 
             <form id="addTask" onsubmit="return false">
-                <button id="submit" type="submit">Add Task</button>
+                <button id="addTaskButton" type="submit">Add Task</button>
             </form>
         </div>
 
@@ -30,7 +30,7 @@
                 <table>
                     <tr>
                         <td>
-                            <input id="name-field" type="text" placeholder="New task name" autofoc></input>
+                            <input id="titleField" type="text" placeholder="New task name" minlength="1" maxlength="75" required autofoc></input>
                         </td>
                     </tr>
 
@@ -46,25 +46,25 @@
 
                     <tr>
                         <td>
-                            <input id="date-field" type="date" placeholder="Due date"></input>
+                            <input id="dateField" type="date" placeholder="Due date" required></input>
                         </td>
                     </tr>
 
                     <tr>
                         <td>
-                            <input id="brief-field" type="text" placeholder="Brief description"></input>
+                            <input id="briefField" type="text" placeholder="Brief description" minlength="1" maxlength="50" required></input>
                         </td>
                     </tr>
 
                     <tr>
                         <td>
-                            <input id="brief-field" type="text" placeholder="Complete description"></input>
+                            <input id="descriptionField" type="text" placeholder="Complete description" minlength="1" required></input>
                         </td>
                     </tr>
                     
                     <tr>
                         <td>
-                            <button id="submit-button" type="submit">Save</button>
+                            <button id="submitButton" type="submit">Save</button>
                         </td>
                     </tr>
                 </table>
