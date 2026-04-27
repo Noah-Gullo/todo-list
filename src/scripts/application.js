@@ -138,13 +138,13 @@ function createProject(name){
 }
 
 export function addTask(){
-    const title = document.getElementById("titleField").value;
-    const brief = document.getElementById("briefField").value;
-    const date = document.getElementById("dateField").value;
+    const title = document.getElementById("titleField").value.trimStart();
+    const brief = document.getElementById("briefField").value.trimStart();
+    const date = document.getElementById("dateField").value.trimStart();
     const priority = document.getElementById("priorityDropdown").value;
-    const description = document.getElementById("descriptionField").value;
+    const description = document.getElementById("descriptionField").value.trimStart();
 
-    if(date != ""){
+    if(date != "" && brief != "" && description != "" && title != ""){
         createTask(title, brief, format(date, "MM/dd/yyyy"), priority, description);
     }
     renderAllTasks();
