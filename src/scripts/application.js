@@ -89,6 +89,14 @@ class Project{
         return this.todoList;
     }
 
+    removeFromList(id){
+        for(let i = 0; i < this.todoList.length; i++){
+            if(this.todoList[i].getId() == id){
+                this.todoList.splice(i, 1);
+            }
+        }
+    }
+
     getId(){
         return this.id;
     }
@@ -153,11 +161,9 @@ export function addProject(projectName){
 // Removes a task from a given project
 export function deleteTask(task){
     for(let i = 0; i < projects.length; i++){
-        for(let j = 0; j < projects[i].todoList.length; j++){
+        for(let j = 0; j < projects[i].getList().length; j++){ 
             if(projects[i].getList()[j].getId() === task.getId()){
-                console.log(projects[i].getList());
-                projects[i].getList().splice(j, 1);
-                console.log(projects[i].getList());
+                projects[i].removeFromList(task.getId());
                 break;
             }
         }

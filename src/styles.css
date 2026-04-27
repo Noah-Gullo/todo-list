@@ -225,6 +225,10 @@ h1:hover{
     text-decoration: none;
 }
 
+.task .taskInput .complete:hover{
+    background-color: #005380;
+}
+
 .task .taskInput .delete{
     font-family: Arial, Helvetica, sans-serif;
     margin: 1em;

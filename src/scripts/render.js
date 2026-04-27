@@ -15,7 +15,6 @@ export function renderAllTasks() {
 
     // Get the list of tasks in the current project as an array
     const tasks = projects[projIdx].getList();
-
     // If there are no tasks in the current project
     if(tasks.length == 0){
         const emptyMsg = document.createElement("h2");
@@ -153,7 +152,10 @@ function renderDeleteTask(task){
     deleteButton.setAttribute("class", "delete");
     deleteButton.addEventListener("click", () => {
         task.toggleExpand();
+        document.getElementById(task.getId()).remove();
+
         deleteTask(task);
+        task = null;
         renderAllTasks();
     });
     return deleteButton;
@@ -216,7 +218,7 @@ export function renderProjects(){
             const deleteAllButton = document.createElement("button");
             deleteAllButton.setAttribute("id", "deleteAll");
             deleteAllButton.addEventListener("click", () => deleteAllProjects());
-            deleteAllButton.textContent = "Remove All";
+            deleteAllButton.textContent = "Remove Projects";
             projectDiv.appendChild(deleteAllButton);
         }
 
