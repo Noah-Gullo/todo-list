@@ -143,7 +143,10 @@ export function addTask(){
     const date = document.getElementById("dateField").value;
     const priority = document.getElementById("priorityDropdown").value;
     const description = document.getElementById("descriptionField").value;
-    createTask(title, brief, format(date, "MM/dd/yyyy"), priority, description);
+
+    if(date != ""){
+        createTask(title, brief, format(date, "MM/dd/yyyy"), priority, description);
+    }
     renderAllTasks();
 }
 
