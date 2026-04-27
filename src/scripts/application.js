@@ -137,6 +137,11 @@ function createProject(name){
     return newProject;
 }
 
+export function addTask(){
+    const popup = document.querySelector("dialog");
+    popup.showModal();
+}
+
 // Adds project given the new project's name, provided it is not a repeat of another project and meets min/max length.
 export function addProject(projectName){
     if(projectName.length < 1 || projectName.length > 10 && projectName.charAt(0) != " "){

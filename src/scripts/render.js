@@ -1,4 +1,4 @@
-import { state, projects, addProject, deleteTask, deleteProject, deleteAllProjects} from "./application.js"
+import { state, projects, addProject, addTask, deleteTask, deleteProject, deleteAllProjects} from "./application.js"
 
 export function renderAllTasks() {
     const taskContainer = document.getElementById("taskContainer");
@@ -260,3 +260,5 @@ function changePriority(task){
 const addProjectButton = document.querySelector("#addProject > button");
 addProjectButton.addEventListener("click", () => addNewProject());
 
+const addTaskButton = document.querySelector("#addTask > button");
+addTaskButton.addEventListener("click", () => addTask());

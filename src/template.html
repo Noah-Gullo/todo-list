@@ -16,15 +16,59 @@
             </form>
 
             <form id="addTask" onsubmit="return false">
-                <input id="newNameField" type="text" placeholder="Enter task name:" minlength=1 maxlength=10 required aria-required="true"></input>
                 <button id="submit" type="submit">Add Task</button>
             </form>
-            
         </div>
 
         <div id="content">
             <div id="projectContainer"></div>
             <div id="taskContainer"></div>
         </div>
+
+        <dialog closedby="any">
+            <form method="dialog" id="taskPopup">
+                <table>
+                    <tr>
+                        <td>
+                            <input id="name-field" type="text" placeholder="New task name" autofoc></input>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <select id="priorityDropdown">
+                                <option value="Low" selected>Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input id="date-field" type="date" placeholder="Due date"></input>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input id="brief-field" type="text" placeholder="Brief description"></input>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input id="brief-field" type="text" placeholder="Complete description"></input>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <button id="submit-button" type="submit">Save</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </dialog>
     </body>
 </html>

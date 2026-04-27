@@ -72,7 +72,6 @@ h1:hover{
 
 #userInput > form > button:hover{
     background-color: rgb(18, 212, 1);
-    
 }
 
 #userInput > form > button:active{
@@ -319,4 +318,67 @@ h1:hover{
 
 .task.true h2{
     text-decoration-color: var(--task-title-text);
+}
+
+dialog{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1em;
+    border-radius: 1em;
+    border: none;
+    background-color: gray;
+}
+
+dialog form table{
+    background-color: gray;
+}
+
+dialog input,
+dialog select{
+    margin: 0.25em;
+    font-size: 1.5rem;
+    border: 0.1em solid var(--normal-text);
+    color: white;
+    font-weight: bold;
+    container-type: inline;
+    padding: 0.2em;
+    background-color: gray;
+}
+
+dialog select option{
+    background-color: gray;
+}
+
+dialog form table tr{
+    border: none;
+}
+
+dialog form table tr,
+dialog form table tr td{
+    background-color: gray;
+}
+
+dialog input::placeholder{
+    font-weight: normal;
+    color: white;
+}
+
+dialog button{
+    background-color: rgb(21, 255, 0);
+    padding: 0.2em;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 0.2em;
+}
+
+dialog button:hover{
+    background-color: rgb(18, 212, 1);
+    padding: 0.3rem;
+}
+
+dialog button:active{
+    background-color: rgb(15, 177, 0);
+    padding: 0.2rem;
 }
