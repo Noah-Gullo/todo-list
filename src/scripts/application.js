@@ -58,10 +58,12 @@ class Task{
 
     toggleComplete(){
         this.complete = !this.complete;
+        saveData();
     }
 
     toggleExpand(){
         this.expanded = !this.expanded;
+        saveData();
     }
 }
 
@@ -124,6 +126,7 @@ function createTask(title, brief, dueDate, priority, description){
         }
     }
 
+    saveData();
     return newTask;
 }
 
@@ -136,6 +139,8 @@ function createProject(name){
 
     projects.push(newProject);
     return newProject;
+
+    saveData();
 }
 
 export function addTask(){
@@ -149,6 +154,8 @@ export function addTask(){
         createTask(title, brief, format(date, "MM/dd/yyyy"), priority, description);
     }
     renderAllTasks();
+
+    saveData();
 }
 
 // Adds project given the new project's name, provided it is not a repeat of another project and meets min/max length.
@@ -170,6 +177,8 @@ export function addProject(projectName){
     }else{
         return true;
     }
+
+    saveData();
 }
 
 // Removes a task from a given project
@@ -181,6 +190,8 @@ export function deleteTask(task){
             }
         }
     }
+
+    saveData();
 }
 
 // Removes the project. If it is the current project transfers to the project above it.
@@ -194,6 +205,8 @@ export function deleteProject(project){
             projects.splice(i, 1);
         }
     }
+
+    saveData();
 }
 
 // Removes all projects except for the default "Home" project
@@ -205,6 +218,12 @@ export function deleteAllProjects(){
     state.currProject = "Home";
     renderProjects();
     switchProjects(state.currProject);
+    
+    saveData();
+}
+
+function saveData(){
+    localStorage.setItem("Projects", JSON.stringify(projects));
 }
 
 const homeProject = createProject("Home");
