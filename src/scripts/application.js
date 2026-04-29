@@ -222,15 +222,17 @@ export function deleteAllProjects(){
     saveData();
 }
 
+// Saves all project data and the currently opened project
 export function saveData(){
-    //localStorage.clear();
     localStorage.setItem("Projects", JSON.stringify(projects));
     localStorage.setItem("Current Project", state.currProject);
 }
 
+// On webpage load, attempt to load any previous data. If not, then load select pre-created tasks/projects.
 export function loadData(){
     try{
         let projectData = JSON.parse(localStorage.getItem("Projects"));
+        // Temp current project to store the saved project upon loading page. Needed so loading the tasks can function correctly
         let tempCurrProject = localStorage.getItem("Current Project");
         for(let i = 0; i < projectData.length; i++){
             createProject(projectData[i].name);
