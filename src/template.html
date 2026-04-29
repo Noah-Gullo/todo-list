@@ -11,7 +11,7 @@
         
         <div id="userInput">
             <form id="addProject" onsubmit="return false">
-                <input id="newNameField" type="text" placeholder="Enter project name:" minlength="1" maxlength="10" required aria-required="true"></input>
+                <input id="newNameField" type="text" placeholder="Enter project name:" minlength="1" maxlength="19" required aria-required="true"></input>
                 <button id="submit" type="submit">Add Project</button>
             </form>
 
@@ -25,7 +25,9 @@
             <div id="taskContainer"></div>
         </div>
 
-        <dialog closedby="any">
+        <button id="resetAll">Clear Data</button>
+
+        <dialog id="taskDialog" closedby="any">
             <form method="dialog" id="taskPopup">
                 <table>
                     <tr>
@@ -68,6 +70,29 @@
                         </td>
                     </tr>
                 </table>
+            </form>
+        </dialog>
+
+        <dialog id="resetDialog" closedby="any">
+            <form method="dialog" id="resetPopup">
+                <tr>
+                    <td>
+                        <p>WARNING: This will permenantely delete all your data.<br> Are you sure you want to do this?</p>
+                    </td>
+                </tr>
+                <div id="resetButtons">
+                    <tr>
+                        <td>
+                            <button id="cancelResetButton">Cancel</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <button id="submitResetButton" type="submit">Delete My Data</button>
+                        </td>
+                    </tr>
+                </div>
             </form>
         </dialog>
     </body>

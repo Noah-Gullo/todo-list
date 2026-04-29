@@ -320,7 +320,7 @@ h1:hover{
     text-decoration-color: var(--task-title-text);
 }
 
-dialog{
+#taskDialog{
     position: absolute;
     left: 50%;
     top: 50%;
@@ -331,12 +331,12 @@ dialog{
     background-color: gray;
 }
 
-dialog form table{
+#taskDialog form table{
     background-color: gray;
 }
 
-dialog input,
-dialog select{
+#taskDialog input,
+#taskDialog select{
     margin: 0.25em;
     font-size: 1.5rem;
     border: 0.1em solid var(--normal-text);
@@ -347,25 +347,25 @@ dialog select{
     background-color: gray;
 }
 
-dialog select option{
+#taskDialog select option{
     background-color: gray;
 }
 
-dialog form table tr{
+#taskDialog form table tr{
     border: none;
 }
 
-dialog form table tr,
-dialog form table tr td{
+#taskDialog form table tr,
+#taskDialog form table tr td{
     background-color: gray;
 }
 
-dialog input::placeholder{
+#taskDialog input::placeholder{
     font-weight: normal;
     color: white;
 }
 
-dialog button{
+#taskDialog button{
     background-color: rgb(21, 255, 0);
     padding: 0.2em;
     font-size: 1.3rem;
@@ -373,12 +373,99 @@ dialog button{
     border-radius: 0.2em;
 }
 
-dialog button:hover{
+#taskDialog  button:hover{
     background-color: rgb(18, 212, 1);
     padding: 0.3rem;
 }
 
-dialog button:active{
+#taskDialog button:active{
     background-color: rgb(15, 177, 0);
     padding: 0.2rem;
+}
+
+#resetDialog{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 1em;
+    border: none;
+    padding: 1em;
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    color: white;
+}
+
+#resetPopup p{
+    font-size: 2rem;
+}
+
+#resetButtons{
+    display: flex;
+    justify-content: space-around;
+    background-color: black;
+}
+
+#resetDialog form,
+#resetPopup p{
+    background-color: black;
+}
+
+#cancelResetButton,
+#submitResetButton{
+    color: white;
+    font-weight: bold;
+    padding: 1em;
+    font-size: 1rem;
+    border-radius: 0.5em;
+    border: none;
+}
+
+#cancelResetButton{
+    background-color: gray;
+}
+
+#cancelResetButton:hover{
+    background-color: rgb(79, 79, 79);
+}
+
+#cancelResetButton:active{
+    background-color: rgb(150, 150, 150);
+}
+
+#submitResetButton{
+    background-color: red;
+}
+
+#submitResetButton:hover{
+    background-color: rgb(255, 87, 87);
+}
+
+#submitResetButton:active{
+    background-color:rgb(117, 0, 0);
+}
+
+#resetAll{
+    display: flex;
+    justify-self: flex-end;
+    align-self: flex-end;
+    margin: 1em;
+    background-color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    font-weight: 900;
+    padding: 1em;
+    border: none;
+    border-radius: 0.5em;
+}
+
+#resetAll:hover{
+    background-color: rgb(255, 87, 87);
+    padding: 1.1em;
+}
+
+#resetAll:active{
+    background-color: rgb(117, 0, 0);
+    padding: 0.9em;
 }

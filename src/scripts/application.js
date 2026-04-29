@@ -151,7 +151,7 @@ export function addTask(){
     const description = document.getElementById("descriptionField").value.trimStart();
 
     if(date != "" && brief != "" && description != "" && title != ""){
-        createTask(title, brief, format(date, "MM/dd/yyyy"), priority, description);
+        createTask(title, brief, format(date, "MM/dd/yyyy"), priority, description, false, false);
     }
     renderAllTasks();
 
@@ -160,7 +160,7 @@ export function addTask(){
 
 // Adds project given the new project's name, provided it is not a repeat of another project and meets min/max length.
 export function addProject(projectName){
-    if(projectName.length < 1 || projectName.length > 10 && projectName.charAt(0) != " "){
+    if(projectName.length < 1 || projectName.length > 19 && projectName.charAt(0) != " "){
         return;
     }
 
@@ -228,6 +228,11 @@ export function saveData(){
     localStorage.setItem("Current Project", state.currProject);
 }
 
+export function resetData(){
+    localStorage.clear();
+    loadData();
+}
+
 // On webpage load, attempt to load any previous data. If not, then load select pre-created tasks/projects.
 export function loadData(){
     try{
@@ -258,6 +263,7 @@ export function loadData(){
         state.currProject = "Work";
         createTask("Work Task", "Another Description", format(new Date(2096, 5, 15), "MM/dd/yyyy"), "Low", 
                    "This is an example work task.", false, false);
+        state.currProject = "Home";
     }
 
     renderProjects();

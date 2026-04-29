@@ -1,4 +1,4 @@
-import { state, saveData, projects, addProject, addTask, deleteTask, deleteProject, deleteAllProjects, saveCurrentProject} from "./application.js"
+import { state, saveData, resetData, projects, addProject, addTask, deleteTask, deleteProject, deleteAllProjects, saveCurrentProject} from "./application.js"
 
 export function renderAllTasks() {
     const taskContainer = document.getElementById("taskContainer");
@@ -265,8 +265,17 @@ addProjectButton.addEventListener("click", () => addNewProject());
 
 const addTaskButton = document.getElementById("addTaskButton");
 addTaskButton.addEventListener("click", () => {
-    document.querySelector("dialog").showModal();
+    document.getElementById("taskDialog").showModal();
 });
 
 const submitTaskButton = document.getElementById("submitButton");
 submitTaskButton.addEventListener("click", () => addTask());
+
+const cancelReset = document.getElementById("cancelResetButton");
+cancelReset.addEventListener("click", () => {document.getElementById("resetDialog").close();});
+
+const resetAllButton = document.getElementById("resetAll");
+resetAllButton.addEventListener("click", () => {document.getElementById("resetDialog").showModal();});
+
+const resetSubmit = document.getElementById("submitResetButton");
+resetSubmit.addEventListener("click", () => resetData());
