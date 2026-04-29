@@ -42,7 +42,7 @@ h1:hover{
 #deleteAll{
     border: 0.2rem solid white;
     padding: 0.2em;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 #userInput > form >input{
