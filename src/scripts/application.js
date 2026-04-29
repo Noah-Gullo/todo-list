@@ -4,7 +4,7 @@ import {format} from "date-fns";
 export let projects = [];
 
 class Task{
-    constructor(title, brief, dueDate, priority, description, randomId){
+    constructor(title, brief, dueDate, priority, description, expanded, complete, randomId){
         if(!new.target){
             throw new TypeError("Called Task constructor without new");
         }
@@ -14,8 +14,8 @@ class Task{
         this.dueDate = dueDate;
         this.priority = priority;
         this.description = description;
-        this.expanded = false;
-        this.complete = false;
+        this.expanded = expanded;
+        this.complete = complete;
         this.id = randomId;
         this.delete = false;
     }
@@ -113,13 +113,13 @@ export const state = {
     currProject: "Home",
 };
 
-function createTask(title, brief, dueDate, priority, description){
+function createTask(title, brief, dueDate, priority, description, expanded, complete){
     const alphabet = "abcdefghijklmnopqrstuvwxyz";
     if(title === undefined || brief === undefined || dueDate === undefined || priority === undefined
-       || description === undefined){
+       || description === undefined || expanded === undefined || complete === undefined){
             throw new Error("Missing task constructor field");
     }
-    const newTask = new Task(title, brief, dueDate, priority, description, alphabet[Math.floor(Math.random() * alphabet.length)] + crypto.randomUUID());
+    const newTask = new Task(title, brief, dueDate, priority, description, expanded, complete, alphabet[Math.floor(Math.random() * alphabet.length)] + crypto.randomUUID());
     for(let i = 0; i < projects.length; i++){
         if(projects[i].getName() === state.currProject){
            projects[i].addToList(newTask);
@@ -239,7 +239,7 @@ export function loadData(){
             state.currProject = projectData[i].name;
             for(let j = 0; j < projectData[i].todoList.length; j++){
                 const task = projectData[i].todoList[j];
-                createTask(task.title, task.brief, task.dueDate, task.priority, task.description);
+                createTask(task.title, task.brief, task.dueDate, task.priority, task.description, task.expanded, task.complete);
             }
         }
 
@@ -250,10 +250,14 @@ export function loadData(){
         createProject("Work");
 
         state.currProject = "Home";
-        createTask("Example Title", "Example description. Click on a task to expand it.",  format(new Date(2096, 7, 24), "MM/dd/yyyy"), "Low", "This is an example task. Longer descriptions can go here instead of the brief one (in gray) above.");
-        createTask("Urgent Task", "Witty description here. Please be amazed.", format(new Date(2096, 3, 9), "MM/dd/yyyy"), "High", "This is an urgent task. Better complete it soon.");
+        createTask("Example Title", "Example description. Click on a task to expand it.", format(new Date(2096, 7, 24), "MM/dd/yyyy"),
+                    "Low", "This is an example task. Longer descriptions can go here instead of the brief one (in gray) above.",
+                     false, false);
+        createTask("Urgent Task", "Witty description here. Please be amazed.", format(new Date(2096, 3, 9), "MM/dd/yyyy"), 
+                    "High", "This is an urgent task. Better complete it soon.", false, false);
         state.currProject = "Work";
-        createTask("Work Task", "Another Description", format(new Date(2096, 5, 15), "MM/dd/yyyy"), "Low", "This is an example work task.");
+        createTask("Work Task", "Another Description", format(new Date(2096, 5, 15), "MM/dd/yyyy"), "Low", 
+                   "This is an example work task.", false, false);
     }
 
     renderProjects();

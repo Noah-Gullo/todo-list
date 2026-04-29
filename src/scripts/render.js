@@ -174,6 +174,7 @@ function renderComplete(task){
     complete.addEventListener("click", () =>{
         task.toggleExpand();
         task.toggleComplete();
+        saveData();
     })
     return complete;
 }
