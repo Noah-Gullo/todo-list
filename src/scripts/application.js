@@ -222,15 +222,39 @@ export function deleteAllProjects(){
     saveData();
 }
 
-function saveData(){
+export function saveData(){
+    //localStorage.clear();
     localStorage.setItem("Projects", JSON.stringify(projects));
+    localStorage.setItem("Current Project", state.currProject);
 }
 
-const homeProject = createProject("Home");
-const workProject = createProject("Work");
+export function loadData(){
+    try{
+        let projectData = JSON.parse(localStorage.getItem("Projects"));
+        let tempCurrProject = localStorage.getItem("Current Project");
+        for(let i = 0; i < projectData.length; i++){
+            createProject(projectData[i].name);
+            state.currProject = projectData[i].name;
+            for(let j = 0; j < projectData[i].todoList.length; j++){
+                const task = projectData[i].todoList[j];
+                createTask(task.title, task.brief, task.dueDate, task.priority, task.description);
+            }
+        }
 
-const testTask = createTask("Example Title", "Example description. Click on a task to expand it.",  format(new Date(2096, 7, 24), "MM/dd/yyyy"), "Low", "This is an example task. Longer descriptions can go here instead of the brief one (in gray) above.");
-const testTask2 = createTask("Urgent Task", "Witty description here. Please be amazed.", format(new Date(2096, 3, 9), "MM/dd/yyyy"), "High", "This is an urgent task. Better complete it soon.");
-state.currProject = "Work";
-const testTask3 = createTask("Work Task", "Another Description", format(new Date(2096, 5, 15), "MM/dd/yyyy"), "Low", "This is an example work task.");
-state.currProject = "Home";
+        state.currProject = tempCurrProject;
+    }catch(e){
+        projects = [];
+        createProject("Home");
+        createProject("Work");
+
+        state.currProject = "Home";
+        createTask("Example Title", "Example description. Click on a task to expand it.",  format(new Date(2096, 7, 24), "MM/dd/yyyy"), "Low", "This is an example task. Longer descriptions can go here instead of the brief one (in gray) above.");
+        createTask("Urgent Task", "Witty description here. Please be amazed.", format(new Date(2096, 3, 9), "MM/dd/yyyy"), "High", "This is an urgent task. Better complete it soon.");
+        state.currProject = "Work";
+        createTask("Work Task", "Another Description", format(new Date(2096, 5, 15), "MM/dd/yyyy"), "Low", "This is an example work task.");
+    }
+
+    renderProjects();
+    renderAllTasks();
+    switchProjects(state.currProject);
+}

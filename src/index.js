@@ -1,5 +1,4 @@
 import "./styles.css"
-import { renderAllTasks, renderProjects } from "./scripts/render.js"
+import { loadData } from "./scripts/application.js"
 
-renderProjects();
-renderAllTasks();
+loadData();

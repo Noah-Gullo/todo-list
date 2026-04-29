@@ -1,4 +1,4 @@
-import { state, projects, addProject, addTask, deleteTask, deleteProject, deleteAllProjects} from "./application.js"
+import { state, saveData, projects, addProject, addTask, deleteTask, deleteProject, deleteAllProjects, saveCurrentProject} from "./application.js"
 
 export function renderAllTasks() {
     const taskContainer = document.getElementById("taskContainer");
@@ -30,6 +30,7 @@ export function renderAllTasks() {
     for(let i = 0; i < tasks.length; i++){
         renderTask(tasks[i]);
     }
+    saveData();
 }
 
 // Add all necessary elements, and their events, of a task to the DOM.
@@ -233,6 +234,7 @@ export function switchProjects(projectName){
     title.textContent = projectName;
     renderAllTasks();
     renderProjects();
+    saveData();
 }
 
 function addNewProject(){
