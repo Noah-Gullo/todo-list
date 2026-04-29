@@ -3,6 +3,7 @@ import { state, projects, addProject, addTask, deleteTask, deleteProject, delete
 export function renderAllTasks() {
     const taskContainer = document.getElementById("taskContainer");
     taskContainer.replaceChildren();
+
     let projIdx = 0;
 
     // Loop through projects to find index of current project
@@ -90,10 +91,11 @@ function setupTaskDiv(task){
     taskDiv.setAttribute("class", "task " + task.isComplete());
     taskDiv.setAttribute("id", task.getId());
     taskDiv.addEventListener("click", () => {
-        task.toggleExpand();
-        renderTask(task);
+            task.toggleExpand();
+            if(event.target.getAttribute("class") != "delete"){
+                renderTask(task);
+            }
     });
-    
     return taskDiv;
 }
 
@@ -151,12 +153,10 @@ function renderDeleteTask(task){
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "X";
     deleteButton.setAttribute("class", "delete");
-    deleteButton.addEventListener("click", () => {
+    deleteButton.addEventListener("click", (e) => {
         task.toggleExpand();
         deleteTask(task);
         renderAllTasks();
-        renderProjects();
-        switchProjects(state.currProject);
     });
     return deleteButton;
 }

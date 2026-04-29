@@ -17,6 +17,7 @@ class Task{
         this.expanded = false;
         this.complete = false;
         this.id = randomId;
+        this.delete = false;
     }
 
     getTitle(){
@@ -177,7 +178,6 @@ export function deleteTask(task){
         for(let j = 0; j < projects[i].getList().length; j++){ 
             if(projects[i].getList()[j].getId() === task.getId()){
                 projects[i].removeFromList(task.getId());
-                break;
             }
         }
     }
@@ -210,8 +210,8 @@ export function deleteAllProjects(){
 const homeProject = createProject("Home");
 const workProject = createProject("Work");
 
-const testTask = createTask("Example Title", "Example description. Click on a task to expand it.",  format(new Date(2096, 5, 24), "MM/dd/yyyy"), "Low", "This is an example task. Longer descriptions can go here instead of the brief one (in gray) above.");
-const testTask2 = createTask("Urgent Task", "Witty description here. Please be amazed.", format(new Date(2096, 5, 9), "MM/dd/yyyy"), "High", "This is an urgent task. Better complete it soon.");
+const testTask = createTask("Example Title", "Example description. Click on a task to expand it.",  format(new Date(2096, 7, 24), "MM/dd/yyyy"), "Low", "This is an example task. Longer descriptions can go here instead of the brief one (in gray) above.");
+const testTask2 = createTask("Urgent Task", "Witty description here. Please be amazed.", format(new Date(2096, 3, 9), "MM/dd/yyyy"), "High", "This is an urgent task. Better complete it soon.");
 state.currProject = "Work";
 const testTask3 = createTask("Work Task", "Another Description", format(new Date(2096, 5, 15), "MM/dd/yyyy"), "Low", "This is an example work task.");
 state.currProject = "Home";
